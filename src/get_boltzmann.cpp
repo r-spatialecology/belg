@@ -40,7 +40,7 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 //' Boltzmann entropy of a landscape gradient;
 //'
-//' @param mat A matrix.
+//' @param x A matrix.
 //' @param base A logarithm base ("log", "log2" or "log10")
 //' @param relative TRUE/FALSE
 //' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based
@@ -51,18 +51,18 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 //' gradient." Transactions in GIS (2018).
 //' @export
 // [[Rcpp::export]]
-double get_boltzmann(arma::mat raster, std::string base = "log", bool relative = false){
+double get_boltzmann(arma::mat x, std::string base = "log", bool relative = false){
   double Res = 0;
 
-  while ((raster.n_rows > 1) && (raster.n_cols > 1)) {
-    int num_r = raster.n_rows - 1;
-    int num_c = raster.n_cols - 1;
+  while ((x.n_rows > 1) && (x.n_cols > 1)) {
+    int num_r = x.n_rows - 1;
+    int num_c = x.n_cols - 1;
     arma::mat Scaled(num_r, num_c);
     arma::mat Result(num_r, num_c);
 
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
-        arma::mat Scaledtmp = raster.submat(i, j, i + 1, j + 1);
+        arma::mat Scaledtmp = x.submat(i, j, i + 1, j + 1);
         arma::vec v = vectorise(Scaledtmp);
 
         Scaled(i, j) = mean(v);
@@ -94,7 +94,7 @@ double get_boltzmann(arma::mat raster, std::string base = "log", bool relative =
     if (relative == true){
       break;
     } else {
-      raster = Scaled;
+      x = Scaled;
     }
   }
   return(Res);

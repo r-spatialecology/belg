@@ -7,15 +7,15 @@
 using namespace Rcpp;
 
 // get_boltzmann
-double get_boltzmann(arma::mat raster, std::string base, bool relative);
-RcppExport SEXP _belg_get_boltzmann(SEXP rasterSEXP, SEXP baseSEXP, SEXP relativeSEXP) {
+double get_boltzmann(arma::mat x, std::string base, bool relative);
+RcppExport SEXP _belg_get_boltzmann(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type raster(rasterSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
     Rcpp::traits::input_parameter< bool >::type relative(relativeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_boltzmann(raster, base, relative));
+    rcpp_result_gen = Rcpp::wrap(get_boltzmann(x, base, relative));
     return rcpp_result_gen;
 END_RCPP
 }

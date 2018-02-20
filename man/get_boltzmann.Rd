@@ -4,14 +4,14 @@
 \alias{get_boltzmann}
 \title{Boltzmann entropy of a landscape gradient;}
 \usage{
-get_boltzmann(raster, base = "log", relative = FALSE)
+get_boltzmann(x, base = "log", relative = FALSE)
 }
 \arguments{
+\item{x}{A matrix.}
+
 \item{base}{A logarithm base ("log", "log2" or "log10")}
 
 \item{relative}{TRUE/FALSE}
-
-\item{mat}{A matrix.}
 }
 \description{
 Boltzmann entropy of a landscape gradient;
