@@ -13,7 +13,7 @@
 #' analytical method for computing the Boltzmann entropy of a landscape
 #' gradient." Transactions in GIS (2018).
 #' @export
-get_boltzmann <- function(x, base = "log", relative = FALSE) {
+get_boltzmann <- function(x, base = "log", relative = TRUE) {
     .Call('_belg_get_boltzmann', PACKAGE = 'belg', x, base, relative)
 }
 

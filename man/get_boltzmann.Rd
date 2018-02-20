@@ -4,7 +4,7 @@
 \alias{get_boltzmann}
 \title{Boltzmann entropy of a landscape gradient;}
 \usage{
-get_boltzmann(x, base = "log", relative = FALSE)
+get_boltzmann(x, base = "log", relative = TRUE)
 }
 \arguments{
 \item{x}{A matrix.}

@@ -51,7 +51,7 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 //' gradient." Transactions in GIS (2018).
 //' @export
 // [[Rcpp::export]]
-double get_boltzmann(arma::mat x, std::string base = "log", bool relative = false){
+double get_boltzmann(arma::mat x, std::string base = "log", bool relative = true){
   double Res = 0;
 
   while ((x.n_rows > 1) && (x.n_cols > 1)) {
