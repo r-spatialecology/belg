@@ -23,15 +23,15 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
   } else {
     if (d_a == d_b) {
       if (x_a == x_b) {
-        Wu = 24 * (d - 1) + 18;
+        Wu = 12 + 24 * (d - 1) + 6;
       } else {
-        Wu = 24 * (d - 1) + 30;
+        Wu = 24 + 24 * (d - 1) + 6;
       }
     } else {
       if (x_a == x_b) {
-        Wu = 24 * (d - 1) + 24;
+        Wu = 12 + 24 * (d - 1) + 12;
       } else {
-        Wu = 24 * (d - 1) + 36;
+        Wu = 24 + 24 * (d - 1) + 12;
       }
     }
   }
@@ -51,21 +51,22 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 //' gradient." Transactions in GIS (2018).
 //' @export
 // [[Rcpp::export]]
-double get_boltzmann(arma::mat x, std::string base = "log", bool relative = true){
+double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = true){
   double Res = 0;
 
   while ((x.n_rows > 1) && (x.n_cols > 1)) {
     int num_r = x.n_rows - 1;
     int num_c = x.n_cols - 1;
-    arma::mat Scaled(num_r, num_c);
-    arma::mat Result(num_r, num_c);
+    arma::imat Scaled(num_r, num_c);
+    arma::dmat Result(num_r, num_c);
 
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
-        arma::mat Scaledtmp = x.submat(i, j, i + 1, j + 1);
-        arma::vec v = vectorise(Scaledtmp);
+        arma::imat Subx = x.submat(i, j, i + 1, j + 1);
+        arma::ivec v = vectorise(Subx);
 
-        Scaled(i, j) = mean(v);
+        int vmean = mean(v);
+
         int s = arma::sum(v);
         int maxi = arma::max(v);
         int mini = arma::min(v);
@@ -77,6 +78,8 @@ double get_boltzmann(arma::mat x, std::string base = "log", bool relative = true
         int d_b = maxi - x_b;
         int d = std::min(d_a, d_b);
         int Wu = wu_calc(d, d_a, d_b, x_a, x_b);
+        Scaled(i, j) = vmean;
+
         if (base == "log"){
           Result(i, j) = log(Wu);
         } else if (base == "log10"){

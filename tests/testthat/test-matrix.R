@@ -9,7 +9,7 @@ lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
 test_that("relative entropy calc is correct on matrix", {
 
   # calculations are correct
-  expect_equal(get_boltzmann(lg, relative = TRUE), 81.745, tolerance = 1e-3)
+  expect_equal(get_boltzmann(lg, relative = TRUE, base = "log"), 81.745, tolerance = 1e-3)
   expect_equal(get_boltzmann(lg, relative = TRUE, base = "log2"), 117.934, tolerance = 1e-3)
   expect_equal(get_boltzmann(lg, relative = TRUE, base = "log10"), 35.501, tolerance = 1e-3)
 
