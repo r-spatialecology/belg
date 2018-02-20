@@ -12,6 +12,7 @@
 #' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient
 #' analytical method for computing the Boltzmann entropy of a landscape
 #' gradient." Transactions in GIS (2018).
+#' @export
 get_boltzmann <- function(raster, base = "log", relative = FALSE) {
     .Call('_belg_get_boltzmann', PACKAGE = 'belg', raster, base, relative)
 }

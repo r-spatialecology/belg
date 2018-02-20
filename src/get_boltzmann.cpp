@@ -49,6 +49,7 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 //' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient
 //' analytical method for computing the Boltzmann entropy of a landscape
 //' gradient." Transactions in GIS (2018).
+//' @export
 // [[Rcpp::export]]
 double get_boltzmann(arma::mat raster, std::string base = "log", bool relative = false){
   double Res = 0;
