@@ -30,7 +30,7 @@ set5o = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
 set_results = c(18.7, 34.5, 54.9,
                  1.2, 17.3, 41.0,
                  50.8, 91.2, 110.8,
-                 37.2, 102.4, 141.5,
+                 27.2, 102.4, 141.5,
                  167.6, 247.0, 282.2)
 
 # compare the results -----------------------------------------------------
@@ -49,3 +49,6 @@ tibble::tibble(expected = set_results,
                obtained = set_outputs)
 
 expect_equal(set_results, round(set_outputs, 1))
+
+# get_boltzmann2(set2e, relative = FALSE)
+# get_boltzmann2(set2f, relative = FALSE)

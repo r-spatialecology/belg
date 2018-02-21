@@ -76,8 +76,14 @@ double get_boltzmann2(arma::imat x, std::string base = "log10", bool relative = 
         int d_b = maxi - x_b;
         int d = std::min(d_a, d_b);
         int Wu = wu_calc(d, d_a, d_b, x_a, x_b);
-        double xxx = mean(v);
-        Scaled(i, j) = std::round(xxx);
+        v.print("V:");
+        // int xxx = round(arma::mean(v));
+        arma::vec v2 = arma::conv_to<arma::vec>::from(v);
+        double xxx2 = arma::mean(v2);
+        int xxx = round(xxx2);
+        Rcout << "Mean: " << xxx2 << "\n";
+        Rcout << "MeanI: " << xxx << "\n";
+        Scaled(i, j) = xxx;
 
         if (base == "log"){
           Result(i, j) = log(Wu);
@@ -93,13 +99,13 @@ double get_boltzmann2(arma::imat x, std::string base = "log10", bool relative = 
         Res += Result(ro, co);
       }
     }
-    Rcout << "Res: " << Res << "\n";
+    // Rcout << "Res: " << Res << "\n";
     if (relative == true){
       break;
     } else {
-      x.print("Pre:");
+      // x.print("Pre:");
       x = Scaled;
-      x.print("Post:");
+      // x.print("Post:");
     }
   }
   return(Res);
