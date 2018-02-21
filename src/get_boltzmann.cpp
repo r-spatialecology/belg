@@ -65,7 +65,7 @@ double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = t
         arma::imat Subx = x.submat(i, j, i + 1, j + 1);
         arma::ivec v = vectorise(Subx);
 
-        int vmean = mean(v);
+        int vmean = std::lround(mean(v));
 
         int s = arma::sum(v);
         int maxi = arma::max(v);
