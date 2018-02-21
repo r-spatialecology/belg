@@ -54,7 +54,7 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = true){
   double Res = 0;
 
-  while ((x.n_rows > 1) && (x.n_cols > 1)) {
+  while ((x.n_rows != 1) && (x.n_cols != 1)) {
     int num_r = x.n_rows - 1;
     int num_c = x.n_cols - 1;
     arma::imat Scaled(num_r, num_c);
@@ -65,20 +65,22 @@ double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = t
         arma::imat Subx = x.submat(i, j, i + 1, j + 1);
         arma::ivec v = vectorise(Subx);
 
-        int vmean = std::lround(mean(v));
-
         int s = arma::sum(v);
         int maxi = arma::max(v);
         int mini = arma::min(v);
 
         double temp = (s - maxi - mini) / 2.0;
-        int x_a = std::floor(temp);
-        int x_b = std::ceil(temp);
+        int x_a = floor(temp);
+        int x_b = ceil(temp);
         int d_a = x_a - mini;
         int d_b = maxi - x_b;
         int d = std::min(d_a, d_b);
         int Wu = wu_calc(d, d_a, d_b, x_a, x_b);
-        Scaled(i, j) = vmean;
+
+        arma::vec v2 = arma::conv_to<arma::vec>::from(v);
+        double xxx2 = arma::mean(v2);
+        int xxx = round(xxx2);
+        Scaled(i, j) = xxx;
 
         if (base == "log"){
           Result(i, j) = log(Wu);
@@ -102,3 +104,4 @@ double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = t
   }
   return(Res);
 }
+
