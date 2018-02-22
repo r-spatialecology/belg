@@ -1,8 +1,15 @@
 Package: belg
-Version: 0.0.0.9000
-Title: What the Package Does (One Line, Title Case)
-Description: What the package does (one paragraph).
-Authors@R: person("First", "Last", , "first.last@example.com", c("aut", "cre"))
+Title: Boltzmann Entropy of Landscapes
+Version: 0.0.1
+Description: Calculates the Boltzmann entropy of a landscape gradient.
+    It uses the analytical method created by Gao, P., Zhang, H. and Li, Z., 2018
+    (<doi:10.1111/tgis.12315>).
+Authors@R: c(person("Jakub", "Nowosad", 
+    email = "nowosad.jakub@gmail.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-1057-3721")),
+    person("Space Informatics Lab", role = c("cph"))
+    )
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -16,3 +23,5 @@ Imports:
     Rcpp
 Suggests: 
     testthat
+URL: https://github.com/Nowosad/belg
+BugReports: https://github.com/Nowosad/belg/issues
