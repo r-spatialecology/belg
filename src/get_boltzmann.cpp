@@ -38,20 +38,8 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
   return(Wu);
 }
 
-//' Boltzmann entropy of a landscape gradient;
-//'
-//' @param x A matrix.
-//' @param base A logarithm base ("log", "log2" or "log10")
-//' @param relative TRUE/FALSE
-//' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based
-//' solution to calculate the configurational entropy of landscape gradients."
-//' Landscape Ecology 32.6 (2017): 1133-1146.
-//' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient
-//' analytical method for computing the Boltzmann entropy of a landscape
-//' gradient." Transactions in GIS (2018).
-//' @export
 // [[Rcpp::export]]
-double get_boltzmann(arma::imat x, std::string base = "log10", bool relative = true){
+double get_boltzmann_default(arma::imat x, std::string base, bool relative){
   double Res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
