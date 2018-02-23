@@ -38,6 +38,12 @@ get_boltzmann.default = function(x, base = "log10", relative = FALSE){
 
 #' @name get_boltzmann
 #' @export
+get_boltzmann.array = function(x, base = "log10", relative = FALSE){
+  apply(z, MARGIN = 3, get_boltzmann_default, base, relative)
+}
+
+#' @name get_boltzmann
+#' @export
 get_boltzmann.Raster = function(x, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("package sp required, please install it first")

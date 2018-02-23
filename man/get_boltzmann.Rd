@@ -3,12 +3,15 @@
 \name{get_boltzmann}
 \alias{get_boltzmann}
 \alias{get_boltzmann.default}
+\alias{get_boltzmann.array}
 \alias{get_boltzmann.Raster}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
 get_boltzmann(x, base = "log10", relative = FALSE)
 
 \method{get_boltzmann}{default}(x, base = "log10", relative = FALSE)
+
+\method{get_boltzmann}{array}(x, base = "log10", relative = FALSE)
 
 \method{get_boltzmann}{Raster}(x, base = "log10", relative = FALSE)
 }
