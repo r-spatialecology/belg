@@ -16,6 +16,8 @@ LazyData: true
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
+Depends:
+    R (>= 3.3.0)
 LinkingTo: 
     Rcpp,
     RcppArmadillo
