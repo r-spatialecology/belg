@@ -92,6 +92,12 @@ test_that("absolute entropy calc is correct on matrix", {
   set_outputs = unlist(lapply(set_list, get_boltzmann, relative = FALSE))
   expect_equal(set_results, set_outputs, tolerance = 1e-3)
 
+  # bad inputs
+  # warnings
+})
+
+test_that("relative entropy calc is correct on array", {
+
   # calculations are correct #3
   case_outputs = get_boltzmann(case_array, relative = TRUE)
   expect_equal(case_results, case_outputs, tolerance = 1e-3)
@@ -99,3 +105,5 @@ test_that("absolute entropy calc is correct on matrix", {
   # bad inputs
   # warnings
 })
+
+
