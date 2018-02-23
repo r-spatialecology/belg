@@ -22,7 +22,7 @@ get_boltzmann(x, base = "log10", relative = FALSE)
 \method{get_boltzmann}{RasterBrick}(x, base = "log10", relative = FALSE)
 }
 \arguments{
-\item{x}{A matrix.}
+\item{x}{RasterLayer, RasterStack, RasterBrick, matrix, or array}
 
 \item{base}{A logarithm base ("log", "log2" or "log10")}
 
@@ -32,7 +32,7 @@ get_boltzmann(x, base = "log10", relative = FALSE)
 a numeric vector
 }
 \description{
-Read a text output of the geoPAT 2.0 functions into R
+Calculates the Boltzmann entropy of a landscape gradient
 }
 \examples{
 new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
