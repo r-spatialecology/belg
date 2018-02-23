@@ -44,10 +44,30 @@ get_boltzmann.array = function(x, base = "log10", relative = FALSE){
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.Raster = function(x, base = "log10", relative = FALSE){
+get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
     stop("package raster required, please install it first")
-  get_boltzmann(raster::as.matrix(x), base = base, relative = relative)
+  get_boltzmann_default(raster::as.matrix(x), base = base, relative = relative)
+}
+
+#' @name get_boltzmann
+#' @export
+get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE){
+  if (!requireNamespace("sp", quietly = TRUE))
+    stop("package sp required, please install it first")
+  if (!requireNamespace("raster", quietly = TRUE))
+    stop("package raster required, please install it first")
+  get_boltzmann(raster::as.array(x), base = base, relative = relative)
+}
+
+#' @name get_boltzmann
+#' @export
+get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE){
+  if (!requireNamespace("sp", quietly = TRUE))
+    stop("package sp required, please install it first")
+  if (!requireNamespace("raster", quietly = TRUE))
+    stop("package raster required, please install it first")
+  get_boltzmann(raster::as.array(x), base = base, relative = relative)
 }
