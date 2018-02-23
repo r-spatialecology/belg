@@ -24,8 +24,9 @@ LinkingTo:
 Imports: 
     Rcpp
 Suggests: 
-    testthat, 
+    testthat,
     sp,
-    raster
+    raster,
+    covr
 URL: https://github.com/Nowosad/belg
 BugReports: https://github.com/Nowosad/belg/issues
