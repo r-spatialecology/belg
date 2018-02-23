@@ -1,8 +1,8 @@
 #' Boltzmann entropy of a landscape gradient
 #'
-#' Read a text output of the geoPAT 2.0 functions into R
+#' Calculates the Boltzmann entropy of a landscape gradient
 #'
-#' @param x A matrix.
+#' @param x RasterLayer, RasterStack, RasterBrick, matrix, or array
 #' @param base A logarithm base ("log", "log2" or "log10")
 #' @param relative TRUE/FALSE
 #'
@@ -39,7 +39,7 @@ get_boltzmann.default = function(x, base = "log10", relative = FALSE){
 #' @name get_boltzmann
 #' @export
 get_boltzmann.array = function(x, base = "log10", relative = FALSE){
-  apply(z, MARGIN = 3, get_boltzmann_default, base, relative)
+  apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
 }
 
 #' @name get_boltzmann
