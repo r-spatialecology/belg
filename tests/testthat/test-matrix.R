@@ -1,4 +1,4 @@
-context("entropy calc on matrix")
+context("entropy calc on matrix/array")
 # data prep ---------------------------------------------------------------
 # software example
 new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
