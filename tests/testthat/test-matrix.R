@@ -65,8 +65,9 @@ case8 = matrix(c(1, 5, 4, 9), ncol = 2)
 case_results = c(0, 0.7782, 0.6021, 1.0792,
                  1.8195, 1.8921, 1.8573, 1.9243)
 
-case_list = list(case1, case2, case3, case4,
-                 case5, case6, case7, case8)
+case_array = array(c(case1, case2, case3, case4,
+                     case5, case6, case7, case8),
+                   dim = c(2, 2, 8))
 
 # tests
 test_that("relative entropy calc is correct on matrix", {
@@ -92,7 +93,7 @@ test_that("absolute entropy calc is correct on matrix", {
   expect_equal(set_results, set_outputs, tolerance = 1e-3)
 
   # calculations are correct #3
-  case_outputs = unlist(lapply(case_list, get_boltzmann, relative = TRUE))
+  case_outputs = get_boltzmann(case_array, relative = TRUE)
   expect_equal(case_results, case_outputs, tolerance = 1e-3)
 
   # bad inputs
