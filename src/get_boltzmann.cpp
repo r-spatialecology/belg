@@ -4,58 +4,58 @@ using namespace Rcpp;
 // [[Rcpp::depends(RcppArmadillo)]]
 
 int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
-  int Wu = 0;
+  int wu = 0;
 
   if (d == 0) {
     if (d_a == d_b) {
       if (x_a == x_b) {
-        Wu = 1;
+        wu = 1;
       } else {
-        Wu = 6;
+        wu = 6;
       }
     } else {
       if (x_a == x_b) {
-        Wu = 4;
+        wu = 4;
       } else {
-        Wu = 12;
+        wu = 12;
       }
     }
   } else {
     if (d_a == d_b) {
       if (x_a == x_b) {
-        Wu = 12 + 24 * (d - 1) + 6;
+        wu = 12 + 24 * (d - 1) + 6;
       } else {
-        Wu = 24 + 24 * (d - 1) + 6;
+        wu = 24 + 24 * (d - 1) + 6;
       }
     } else {
       if (x_a == x_b) {
-        Wu = 12 + 24 * (d - 1) + 12;
+        wu = 12 + 24 * (d - 1) + 12;
       } else {
-        Wu = 24 + 24 * (d - 1) + 12;
+        wu = 24 + 24 * (d - 1) + 12;
       }
     }
   }
-  return(Wu);
+  return(wu);
 }
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
-  double Res = 0;
+  double res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
     int num_r = x.n_rows - 1;
     int num_c = x.n_cols - 1;
-    arma::imat Scaled(num_r, num_c);
-    arma::dmat Result(num_r, num_c);
+    arma::imat scaled(num_r, num_c);
+    arma::dmat result(num_r, num_c);
 
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
-        arma::imat Subx = x.submat(i, j, i + 1, j + 1);
-        arma::ivec v = vectorise(Subx);
+        arma::imat sub_x = x.submat(i, j, i + 1, j + 1);
+        arma::ivec sub_x_v = vectorise(sub_x);
 
-        int s = arma::sum(v);
-        int maxi = arma::max(v);
-        int mini = arma::min(v);
+        int s = arma::sum(sub_x_v);
+        int maxi = arma::max(sub_x_v);
+        int mini = arma::min(sub_x_v);
 
         double temp = (s - maxi - mini) / 2.0;
         int x_a = floor(temp);
@@ -63,33 +63,33 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
         int d_a = x_a - mini;
         int d_b = maxi - x_b;
         int d = std::min(d_a, d_b);
-        int Wu = wu_calc(d, d_a, d_b, x_a, x_b);
+        int wu = wu_calc(d, d_a, d_b, x_a, x_b);
 
-        arma::vec v2 = arma::conv_to<arma::vec>::from(v);
-        double xxx2 = arma::mean(v2);
-        int xxx = round(xxx2);
-        Scaled(i, j) = xxx;
+        arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x_v);
+        double sub_mean = arma::mean(sub_x_v2);
+        int sub_mean_round = round(sub_mean);
+        scaled(i, j) = sub_mean_round;
 
         if (base == "log"){
-          Result(i, j) = log(Wu);
+          result(i, j) = log(wu);
         } else if (base == "log10"){
-          Result(i, j) = log10(Wu);
+          result(i, j) = log10(wu);
         } else if (base == "log2"){
-          Result(i, j) = log2(Wu);
+          result(i, j) = log2(wu);
         }
       }
     }
     for (int ro = 0; ro < num_r; ro++) {
       for (int co = 0; co < num_c; co++) {
-        Res += Result(ro, co);
+        res += result(ro, co);
       }
     }
     if (relative == true){
       break;
     } else {
-      x = Scaled;
+      x = scaled;
     }
   }
-  return(Res);
+  return(res);
 }
 
