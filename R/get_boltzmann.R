@@ -49,7 +49,7 @@ get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE){
     stop("package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
     stop("package raster required, please install it first")
-  get_boltzmann_default(raster::as.matrix(x), base = base, relative = relative)
+  get_boltzmann(raster::as.matrix(x), base = base, relative = relative)
 }
 
 #' @name get_boltzmann
