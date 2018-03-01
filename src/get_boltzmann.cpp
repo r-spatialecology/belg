@@ -66,8 +66,7 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
         int wu = wu_calc(d, d_a, d_b, x_a, x_b);
 
         arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x_v);
-        double sub_mean = arma::mean(sub_x_v2);
-        int sub_mean_round = round(sub_mean);
+        int sub_mean_round = round(arma::mean(sub_x_v2));
         scaled(i, j) = sub_mean_round;
 
         if (base == "log"){
