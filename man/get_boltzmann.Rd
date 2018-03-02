@@ -34,6 +34,13 @@ a numeric vector
 \description{
 Calculates the Boltzmann entropy of a landscape gradient
 }
+\details{
+The method for computing the Boltzmann entropy of a landscape
+gradient works on integer values that are either positive or equals to zero.
+This function automatically converts non-integers into integers
+and negative values are shifted to positive values. Input data with missing
+values is not supported.
+}
 \examples{
 new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
           15, 55, 85, 69, 12, 52, 25, 56,

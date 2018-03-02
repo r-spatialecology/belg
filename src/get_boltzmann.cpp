@@ -40,6 +40,15 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
+  int min_value = x.min();
+  if (min_value < 0 && min_value > INT_MIN){
+    // negative values to positive ones
+    x = x - min_value;
+  } else if (min_value == INT_MIN){
+    // NA values in the data = error
+    stop("NA values are not supported \n");
+  }
+
   double res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {

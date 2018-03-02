@@ -8,6 +8,12 @@
 #'
 #' @return a numeric vector
 #'
+#' @details The method for computing the Boltzmann entropy of a landscape
+#' gradient works on integer values that are either positive or equals to zero.
+#' This function automatically converts non-integers into integers
+#' and negative values are shifted to positive values. Input data with missing
+#' values is not supported.
+#'
 #' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based
 #' solution to calculate the configurational entropy of landscape gradients."
 #' Landscape Ecology 32.6 (2017): 1133-1146.
@@ -46,9 +52,9 @@ get_boltzmann.array = function(x, base = "log10", relative = FALSE){
 #' @export
 get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("package sp required, please install it first")
+    stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("package raster required, please install it first")
+    stop("Package raster required, please install it first")
   get_boltzmann(raster::as.matrix(x), base = base, relative = relative)
 }
 
@@ -56,9 +62,9 @@ get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE){
 #' @export
 get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("package sp required, please install it first")
+    stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("package raster required, please install it first")
+    stop("Package raster required, please install it first")
   get_boltzmann(raster::as.array(x), base = base, relative = relative)
 }
 
@@ -66,8 +72,8 @@ get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE){
 #' @export
 get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("package sp required, please install it first")
+    stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("package raster required, please install it first")
+    stop("Package raster required, please install it first")
   get_boltzmann(raster::as.array(x), base = base, relative = relative)
 }
