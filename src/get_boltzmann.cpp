@@ -40,6 +40,11 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
+  // values to positive
+  int min_value = x.min();
+  if (min_value < 0){
+    x = x - min_value;
+  }
   double res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
@@ -67,7 +72,6 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
 
         // Conversion + Search for NA values
         arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
-
         scaled(i, j) = round(arma::mean(sub_x_v2));
 
         if (base == "log"){
