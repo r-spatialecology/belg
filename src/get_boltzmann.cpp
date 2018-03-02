@@ -40,6 +40,21 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
+  int min_value = x.min();
+  if (min_value < 0 && min_value > INT_MIN){
+    // negative values to positive ones
+    x = x - min_value;
+  } else if (min_value == INT_MIN){
+    // INT_MIN to INT_MAX
+    x = x - 1;
+    // x.print();
+    // test if both NA and negative values occure
+    int new_min_value = x.min();
+    if (new_min_value < -1){
+      stop("Negative values belbelbe \n");
+    }
+  }
+
   double res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
@@ -51,23 +66,36 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
         arma::imat sub_x = x.submat(i, j, i + 1, j + 1);
-        arma::ivec sub_x_v = vectorise(sub_x);
+        // search for NA values
+        arma::imat sub_x_without_na = sub_x.elem(find(sub_x != INT_MAX));
+        // bool tt = sub_x_without_na.is_empty();
+        // Rcpp::Rcout << sub_x_without_na << std::endl;
+        // Rcpp::Rcout << tt << std::endl;
 
-        int s = arma::sum(sub_x_v);
-        int maxi = arma::max(sub_x_v);
-        int mini = arma::min(sub_x_v);
+        int wu;
+        if (!sub_x_without_na.is_empty()){
+          arma::ivec sub_x_v = vectorise(sub_x_without_na);
+          int s = arma::sum(sub_x_v);
+          int maxi = arma::max(sub_x_v);
+          int mini = arma::min(sub_x_v);
 
-        double temp = (s - maxi - mini) / 2.0;
-        int x_a = floor(temp);
-        int x_b = ceil(temp);
-        int d_a = x_a - mini;
-        int d_b = maxi - x_b;
-        int d = std::min(d_a, d_b);
-        int wu = wu_calc(d, d_a, d_b, x_a, x_b);
+          double temp = (s - maxi - mini) / 2.0;
+          int x_a = floor(temp);
+          int x_b = ceil(temp);
+          int d_a = x_a - mini;
+          int d_b = maxi - x_b;
+          int d = std::min(d_a, d_b);
+          wu = wu_calc(d, d_a, d_b, x_a, x_b);
 
-        // Conversion + Search for NA values
-        arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
-        scaled(i, j) = round(arma::mean(sub_x_v2));
+          arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x_v);
+          scaled(i, j) = round(arma::mean(sub_x_v2));
+        } else {
+          wu = 1;
+          scaled(i, j) = INT_MAX;
+          // scaled.print();
+        }
+        Rcpp::Rcout << wu << std::endl;
+
 
         if (base == "log"){
           result(i, j) = log(wu);
@@ -76,6 +104,7 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
         } else if (base == "log2"){
           result(i, j) = log2(wu);
         }
+        // result.print();
       }
     }
     for (int ro = 0; ro < num_r; ro++) {
@@ -88,6 +117,7 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     } else {
       x = scaled;
     }
+    // scaled.print();
   }
   return(res);
 }
