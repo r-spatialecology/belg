@@ -69,6 +69,20 @@ case_array = array(c(case1, case2, case3, case4,
                      case5, case6, case7, case8),
                    dim = c(2, 2, 8))
 
+# negative example
+new_c2 = c(56, 86, 98, 50, 45, 56, 96, 25,
+          15, 55, -85, 69, 12, 52, 25, 56,
+          32, 25, 68, 98, 58, 66, 56, 58)
+
+lg2 = matrix(new_c2, nrow = 3, ncol = 8, byrow = TRUE)
+
+# na example
+new_c3 = c(56, 86, 98, 50, 45, 56, 96, 25,
+           15, 55, NA, 69, 12, 52, 25, 56,
+           32, 25, 68, 98, 58, 66, 56, 58)
+
+lg3 = matrix(new_c3, nrow = 3, ncol = 8, byrow = TRUE)
+
 # tests
 test_that("relative entropy calc is correct on matrix", {
 
@@ -77,7 +91,11 @@ test_that("relative entropy calc is correct on matrix", {
   expect_equal(get_boltzmann(lg, relative = TRUE, base = "log2"), 117.934, tolerance = 1e-3)
   expect_equal(get_boltzmann(lg, relative = TRUE, base = "log10"), 35.501, tolerance = 1e-3)
 
+  expect_equal(get_boltzmann(lg2, relative = TRUE, base = "log10"), 36.699, tolerance = 1e-3)
+
   # bad inputs
+  expect_error(get_boltzmann(lg3))
+
   # warnings
 })
 
@@ -87,6 +105,9 @@ test_that("absolute entropy calc is correct on matrix", {
   expect_equal(get_boltzmann(lg, relative = FALSE, base = "log"), 111.519, tolerance = 1e-3)
   expect_equal(get_boltzmann(lg, relative = FALSE, base = "log2"), 160.889, tolerance = 1e-3)
   expect_equal(get_boltzmann(lg, relative = FALSE, base = "log10"), 48.432, tolerance = 1e-3)
+
+  expect_equal(get_boltzmann(lg2, relative = FALSE, base = "log10"), 49.375, tolerance = 1e-3)
+
 
   # calculations are correct #2
   set_outputs = unlist(lapply(set_list, get_boltzmann, relative = FALSE))
