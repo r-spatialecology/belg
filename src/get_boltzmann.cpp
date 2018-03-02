@@ -40,11 +40,6 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
-  // values to positive
-  int min_value = x.min();
-  if (min_value < 0){
-    x = x - min_value;
-  }
   double res = 0;
 
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
