@@ -3,7 +3,7 @@
 belg
 ====
 
-[![Build Status](https://travis-ci.org/Nowosad/belg.png?branch=master)](https://travis-ci.org/Nowosad/belg) [![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg)
+[![CRAN status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg) [![Build Status](https://travis-ci.org/Nowosad/belg.png?branch=master)](https://travis-ci.org/Nowosad/belg) [![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
 
 Boltzmann entropy (also called configurational entropy) has been recently applied to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al.(2018)). The goal of **belg** is to provide an efficient implementation (in C++) of the method for calculation of the landscape gradient's Boltzmann entropy in R.
 
