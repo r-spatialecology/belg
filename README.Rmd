@@ -24,13 +24,13 @@ The goal of **belg** is to provide an efficient implementation (in C++) of the m
 
 ## Installation
 
-<!-- You can install the released version of belg from [CRAN](https://CRAN.R-project.org) with: -->
+You can install the released version of belg from [CRAN](https://CRAN.R-project.org) with:
 
-<!-- ``` r -->
-<!-- install.packages("belg") -->
-<!-- ``` -->
+``` r
+install.packages("belg")
+```
 
-You can install the development version from [GitHub](https://github.com/) with:
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
