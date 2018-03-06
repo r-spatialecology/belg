@@ -79,11 +79,11 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
         scaled(i, j) = round(arma::mean(sub_x_v2));
 
         if (base == "log"){
-          result(i, j) = log(wu);
+          result(i, j) = log(static_cast<double>(wu));
         } else if (base == "log10"){
-          result(i, j) = log10(wu);
+          result(i, j) = log10(static_cast<double>(wu));
         } else if (base == "log2"){
-          result(i, j) = log2(wu);
+          result(i, j) = log2(static_cast<double>(wu));
         }
       }
     }
