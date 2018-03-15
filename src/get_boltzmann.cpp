@@ -38,6 +38,21 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
   return(wu);
 }
 
+int count_permutations(arma::vec number)
+{
+  // vector sort
+  std::sort(number.begin(), number.end());
+  // result init
+  int count = 0;
+  // iterate for all permutation possible
+  do
+  {
+    count++;
+    // generate next permutation until it is possible
+  } while(std::next_permutation(number.begin(), number.end()));
+  return count;
+}
+
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
   // int min_value = x.min();
@@ -62,20 +77,25 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
         arma::imat sub_x = x.submat(i, j, i + 1, j + 1);
         // Conversion + Search for NA values
         arma::vec sub_x_v = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
-        // if there are no NAs
-        if (sub_x_v.n_elem == 4){
-          int s = arma::sum(sub_x_v);
-          int maxi = arma::max(sub_x_v);
-          int mini = arma::min(sub_x_v);
+        int wu;
+        if ((sub_x_v.n_elem <= 4) && (sub_x_v.n_elem > 1)){
+          if (sub_x_v.n_elem == 4){
+            // if there are no NAs
+            int s = arma::sum(sub_x_v);
+            int maxi = arma::max(sub_x_v);
+            int mini = arma::min(sub_x_v);
 
-          double temp = (s - maxi - mini) / 2.0;
-          int x_a = floor(temp);
-          int x_b = ceil(temp);
-          int d_a = x_a - mini;
-          int d_b = maxi - x_b;
-          int d = std::min(d_a, d_b);
-          int wu = wu_calc(d, d_a, d_b, x_a, x_b);
-
+            double temp = (s - maxi - mini) / 2.0;
+            int x_a = floor(temp);
+            int x_b = ceil(temp);
+            int d_a = x_a - mini;
+            int d_b = maxi - x_b;
+            int d = std::min(d_a, d_b);
+            wu = wu_calc(d, d_a, d_b, x_a, x_b);
+          } else if (sub_x_v.n_elem < 4){
+            // if there are between one and two NAs
+            wu = count_permutations(sub_x_v);
+          }
           scaled(i, j) = round(arma::mean(sub_x_v));
 
           if (base == "log"){
@@ -85,9 +105,15 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
           } else if (base == "log2"){
             result(i, j) = log2(static_cast<double>(wu));
           }
+
+        } else if (sub_x_v.n_elem == 1){
+          // if three values are NA
+          scaled(i, j) = sub_x_v[0];
+          result(i, j) = 0;
         } else{
+          // if all values are NA
           scaled(i, j) = INT_MIN;
-          result(i, j) = 0; // if there is NA
+          result(i, j) = 0;
         }
       }
     }
@@ -99,7 +125,7 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     if (relative == true){
       break;
     } else {
-      scaled.print("Scaled ");
+      // scaled.print("Scaled ");
       x = scaled;
     }
   }
@@ -131,6 +157,19 @@ set_2 = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
                  0, 9, 9, 0, 9, 0, 9, 9, 0, 9),
                ncol = 10)
 
+
 get_boltzmann_default(set_1, relative = FALSE, base = "log")
 get_boltzmann_default(set_2, relative = FALSE, base = "log")
+
+ver_1 = matrix(c(1, 2, 3, 4), ncol = 2)
+ver_2 = matrix(c(1, 2, 3, NA), ncol = 2)
+ver_3 = matrix(c(1, 2, NA, NA), ncol = 2)
+ver_4 = matrix(c(1, NA, NA, NA), ncol = 2)
+ver_5 = matrix(c(NA, NA, NA, NA), ncol = 2)
+
+get_boltzmann_default(ver_1, relative = FALSE, base = "log")
+get_boltzmann_default(ver_2, relative = FALSE, base = "log")
+get_boltzmann_default(ver_3, relative = FALSE, base = "log")
+get_boltzmann_default(ver_4, relative = FALSE, base = "log")
+get_boltzmann_default(ver_5, relative = FALSE, base = "log")
 */
