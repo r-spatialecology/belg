@@ -40,14 +40,14 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
-  int min_value = x.min();
-  if (min_value < 0 && min_value > INT_MIN){
-    // negative values to positive ones
-    x = x - min_value;
-  } else if (min_value == INT_MIN){
-    // NA values in the data = error
-    stop("NA values are not supported \n");
-  }
+  // int min_value = x.min();
+  // if (min_value < 0 && min_value > INT_MIN){
+  //   // negative values to positive ones
+  //   x = x - min_value;
+  // } else if (min_value == INT_MIN){
+  //   // NA values in the data = error
+  //   stop("NA values are not supported \n");
+  // }
 
   double res = 0;
 
@@ -60,30 +60,34 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
         arma::imat sub_x = x.submat(i, j, i + 1, j + 1);
-        arma::ivec sub_x_v = vectorise(sub_x);
-
-        int s = arma::sum(sub_x_v);
-        int maxi = arma::max(sub_x_v);
-        int mini = arma::min(sub_x_v);
-
-        double temp = (s - maxi - mini) / 2.0;
-        int x_a = floor(temp);
-        int x_b = ceil(temp);
-        int d_a = x_a - mini;
-        int d_b = maxi - x_b;
-        int d = std::min(d_a, d_b);
-        int wu = wu_calc(d, d_a, d_b, x_a, x_b);
-
         // Conversion + Search for NA values
-        arma::vec sub_x_v2 = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
-        scaled(i, j) = round(arma::mean(sub_x_v2));
+        arma::vec sub_x_v = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
+        // if there are no NAs
+        if (sub_x_v.n_elem == 4){
+          int s = arma::sum(sub_x_v);
+          int maxi = arma::max(sub_x_v);
+          int mini = arma::min(sub_x_v);
 
-        if (base == "log"){
-          result(i, j) = log(static_cast<double>(wu));
-        } else if (base == "log10"){
-          result(i, j) = log10(static_cast<double>(wu));
-        } else if (base == "log2"){
-          result(i, j) = log2(static_cast<double>(wu));
+          double temp = (s - maxi - mini) / 2.0;
+          int x_a = floor(temp);
+          int x_b = ceil(temp);
+          int d_a = x_a - mini;
+          int d_b = maxi - x_b;
+          int d = std::min(d_a, d_b);
+          int wu = wu_calc(d, d_a, d_b, x_a, x_b);
+
+          scaled(i, j) = round(arma::mean(sub_x_v));
+
+          if (base == "log"){
+            result(i, j) = log(static_cast<double>(wu));
+          } else if (base == "log10"){
+            result(i, j) = log10(static_cast<double>(wu));
+          } else if (base == "log2"){
+            result(i, j) = log2(static_cast<double>(wu));
+          }
+        } else{
+          scaled(i, j) = INT_MIN;
+          result(i, j) = 0; // if there is NA
         }
       }
     }
@@ -95,9 +99,38 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     if (relative == true){
       break;
     } else {
+      scaled.print("Scaled ");
       x = scaled;
     }
   }
   return(res);
 }
 
+/*** R
+set_1 = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
+                 9, 0, 0, 9, 0, 0, 9, 9, 9, 0,
+                 0, 0, 0, 0, 9, 0, 9, 0, 0, 0,
+                 9, 0, 9, 9, 9, 9, 9, 9, 9, 9,
+                 9, 0, 0, 9, 0, 0, 9, 0, 0, 0,
+                 9, 9, 9, 9, 9, 9, 0, 9, 0, 9,
+                 0, 9, 0, 9, 0, 9, 0, 0, 9, 0,
+                 9, 0, 0, 9, 9, 9, 0, 9, 0, 9,
+                 9, 0, 0, 0, 0, 0, 0, 0, 9, 0,
+                 0, 9, 9, 0, 9, 0, 9, 9, 0, 9),
+               ncol = 10)
+
+set_2 = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
+                 9, 0, 0, 9, 0, 0, 9, 9, 9, 0,
+                 0, 0, 0, 0, 9, 0, 9, 0, 0, 0,
+                 9, 0, 9, 9, 9, 9, 9, 9, 9, 9,
+                 9, 0, 0, 9, 0, NA, 9, 0, 0, 0,
+                 9, 9, 9, 9, 9, 9, 0, 9, 0, 9,
+                 0, 9, 0, 9, 0, 9, 0, 0, 9, 0,
+                 9, 0, 0, 9, 9, 9, 0, 9, 0, 9,
+                 9, 0, 0, 0, 0, 0, 0, 0, 9, 0,
+                 0, 9, 9, 0, 9, 0, 9, 9, 0, 9),
+               ncol = 10)
+
+get_boltzmann_default(set_1, relative = FALSE, base = "log")
+get_boltzmann_default(set_2, relative = FALSE, base = "log")
+*/
