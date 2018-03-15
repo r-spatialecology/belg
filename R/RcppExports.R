@@ -5,11 +5,3 @@ get_boltzmann_default <- function(x, base, relative) {
     .Call('_belg_get_boltzmann_default', PACKAGE = 'belg', x, base, relative)
 }
 
-find_na <- function(sub_x) {
-    .Call('_belg_find_na', PACKAGE = 'belg', sub_x)
-}
-
-count_permutations <- function(number) {
-    .Call('_belg_count_permutations', PACKAGE = 'belg', number)
-}
-
