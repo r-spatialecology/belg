@@ -55,17 +55,11 @@ int count_permutations(arma::vec number)
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::imat x, std::string base, bool relative){
-  // int min_value = x.min();
-  // if (min_value < 0 && min_value > INT_MIN){
-  //   // negative values to positive ones
-  //   x = x - min_value;
-  // } else if (min_value == INT_MIN){
-  //   // NA values in the data = error
-  //   stop("NA values are not supported \n");
-  // }
-
+  if (x.min() == INT_MIN){
+    // NA values in the data = warning
+    warning("The input data contains NA values. The result is an approximation. \n");
+  }
   double res = 0;
-
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
     int num_r = x.n_rows - 1;
     int num_c = x.n_cols - 1;
@@ -75,10 +69,15 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
         arma::imat sub_x = x.submat(i, j, i + 1, j + 1);
-        // Conversion + Search for NA values
+        // conversion + search for NA values
         arma::vec sub_x_v = arma::conv_to<arma::vec>::from(sub_x.elem(find(sub_x != INT_MIN)));
         int wu;
-        if ((sub_x_v.n_elem <= 4) && (sub_x_v.n_elem > 1)){
+        if ((sub_x_v.n_elem <= 4) && (sub_x_v.n_elem > 0)){
+          // working with negative values
+          int sub_x_min = sub_x_v.min();
+          if (sub_x_min < 0){
+            sub_x_v = sub_x_v - sub_x_min;
+          }
           if (sub_x_v.n_elem == 4){
             // if there are no NAs
             int s = arma::sum(sub_x_v);
@@ -92,12 +91,14 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
             int d_b = maxi - x_b;
             int d = std::min(d_a, d_b);
             wu = wu_calc(d, d_a, d_b, x_a, x_b);
-          } else if (sub_x_v.n_elem < 4){
+          } else if (sub_x_v.n_elem > 1){
             // if there are between one and two NAs
             wu = count_permutations(sub_x_v);
+          } else if (sub_x_v.n_elem == 1){
+            // if three values are NA
+            wu = 1;
           }
           scaled(i, j) = round(arma::mean(sub_x_v));
-
           if (base == "log"){
             result(i, j) = log(static_cast<double>(wu));
           } else if (base == "log10"){
@@ -105,11 +106,6 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
           } else if (base == "log2"){
             result(i, j) = log2(static_cast<double>(wu));
           }
-
-        } else if (sub_x_v.n_elem == 1){
-          // if three values are NA
-          scaled(i, j) = sub_x_v[0];
-          result(i, j) = 0;
         } else{
           // if all values are NA
           scaled(i, j) = INT_MIN;
@@ -125,51 +121,8 @@ double get_boltzmann_default(arma::imat x, std::string base, bool relative){
     if (relative == true){
       break;
     } else {
-      // scaled.print("Scaled ");
       x = scaled;
     }
   }
   return(res);
 }
-
-/*** R
-set_1 = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
-                 9, 0, 0, 9, 0, 0, 9, 9, 9, 0,
-                 0, 0, 0, 0, 9, 0, 9, 0, 0, 0,
-                 9, 0, 9, 9, 9, 9, 9, 9, 9, 9,
-                 9, 0, 0, 9, 0, 0, 9, 0, 0, 0,
-                 9, 9, 9, 9, 9, 9, 0, 9, 0, 9,
-                 0, 9, 0, 9, 0, 9, 0, 0, 9, 0,
-                 9, 0, 0, 9, 9, 9, 0, 9, 0, 9,
-                 9, 0, 0, 0, 0, 0, 0, 0, 9, 0,
-                 0, 9, 9, 0, 9, 0, 9, 9, 0, 9),
-               ncol = 10)
-
-set_2 = matrix(c(9, 0, 9, 0, 9, 0, 9, 0, 0, 9,
-                 9, 0, 0, 9, 0, 0, 9, 9, 9, 0,
-                 0, 0, 0, 0, 9, 0, 9, 0, 0, 0,
-                 9, 0, 9, 9, 9, 9, 9, 9, 9, 9,
-                 9, 0, 0, 9, 0, NA, 9, 0, 0, 0,
-                 9, 9, 9, 9, 9, 9, 0, 9, 0, 9,
-                 0, 9, 0, 9, 0, 9, 0, 0, 9, 0,
-                 9, 0, 0, 9, 9, 9, 0, 9, 0, 9,
-                 9, 0, 0, 0, 0, 0, 0, 0, 9, 0,
-                 0, 9, 9, 0, 9, 0, 9, 9, 0, 9),
-               ncol = 10)
-
-
-get_boltzmann_default(set_1, relative = FALSE, base = "log")
-get_boltzmann_default(set_2, relative = FALSE, base = "log")
-
-ver_1 = matrix(c(1, 2, 3, 4), ncol = 2)
-ver_2 = matrix(c(1, 2, 3, NA), ncol = 2)
-ver_3 = matrix(c(1, 2, NA, NA), ncol = 2)
-ver_4 = matrix(c(1, NA, NA, NA), ncol = 2)
-ver_5 = matrix(c(NA, NA, NA, NA), ncol = 2)
-
-get_boltzmann_default(ver_1, relative = FALSE, base = "log")
-get_boltzmann_default(ver_2, relative = FALSE, base = "log")
-get_boltzmann_default(ver_3, relative = FALSE, base = "log")
-get_boltzmann_default(ver_4, relative = FALSE, base = "log")
-get_boltzmann_default(ver_5, relative = FALSE, base = "log")
-*/
