@@ -7,12 +7,12 @@
 using namespace Rcpp;
 
 // get_boltzmann_default
-double get_boltzmann_default(arma::imat x, std::string base, bool relative);
+double get_boltzmann_default(arma::mat x, std::string base, bool relative);
 RcppExport SEXP _belg_get_boltzmann_default(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
     Rcpp::traits::input_parameter< bool >::type relative(relativeSEXP);
     rcpp_result_gen = Rcpp::wrap(get_boltzmann_default(x, base, relative));

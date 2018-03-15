@@ -10,9 +10,9 @@
 #'
 #' @details The method for computing the Boltzmann entropy of a landscape
 #' gradient works on integer values that are either positive or equals to zero.
-#' This function automatically converts non-integers into integers
-#' and negative values are shifted to positive values. Input data with missing
-#' values is not supported.
+#' This function automatically rounds values to the nearest integer value
+#' (rounding halfway cases away from zero) and negative values are shifted to
+#' positive values.
 #'
 #' @references Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based
 #' solution to calculate the configurational entropy of landscape gradients."

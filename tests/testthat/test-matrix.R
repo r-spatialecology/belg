@@ -93,9 +93,6 @@ test_that("relative entropy calc is correct on matrix", {
 
   expect_equal(get_boltzmann(lg2, relative = TRUE, base = "log10"), 36.699, tolerance = 1e-3)
 
-  # bad inputs
-  expect_error(get_boltzmann(lg3))
-
   # warnings
 })
 
