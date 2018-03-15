@@ -1,8 +1,10 @@
-#include <Rcpp.h>
+#include <RcppArmadillo.h>
 using namespace Rcpp;
 
+// [[Rcpp::depends(RcppArmadillo)]]
+
 // [[Rcpp::export]]
-int count_permutations(Rcpp::NumericVector number)
+int count_permutations(arma::vec number)
 {
   // vector sort
   std::sort(number.begin(), number.end());
@@ -19,5 +21,5 @@ int count_permutations(Rcpp::NumericVector number)
 }
 
 /*** R
-count_permutations(c(1, 2, 1))
+count_permutations(c(4, 2, 1))
 */
