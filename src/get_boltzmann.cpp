@@ -106,7 +106,7 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
           }
         } else{
           // if all values are NA
-          scaled(i, j) = NA_INTEGER;
+          scaled(i, j) = NA_REAL;
           result(i, j) = 0;
         }
       }
