@@ -19,9 +19,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// find_na
+int find_na(arma::imat sub_x);
+RcppExport SEXP _belg_find_na(SEXP sub_xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::imat >::type sub_x(sub_xSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_na(sub_x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// count_permutations
+int count_permutations(arma::vec number);
+RcppExport SEXP _belg_count_permutations(SEXP numberSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type number(numberSEXP);
+    rcpp_result_gen = Rcpp::wrap(count_permutations(number));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_belg_get_boltzmann_default", (DL_FUNC) &_belg_get_boltzmann_default, 3},
+    {"_belg_find_na", (DL_FUNC) &_belg_find_na, 1},
+    {"_belg_count_permutations", (DL_FUNC) &_belg_count_permutations, 1},
     {NULL, NULL, 0}
 };
 
