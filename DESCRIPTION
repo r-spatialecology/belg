@@ -27,6 +27,9 @@ Suggests:
     testthat,
     sp,
     raster,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 URL: https://github.com/Nowosad/belg
 BugReports: https://github.com/Nowosad/belg/issues
+VignetteBuilder: knitr

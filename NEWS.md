@@ -1,3 +1,7 @@
+# belg 0.2.0
+
+* Support for data with missing values added
+
 # belg 0.1.1
 
 * Solaris compilation fixed
@@ -14,4 +18,4 @@
 
 # belg 0.0.0.9000
 
-* Added a `NEWS.md` file to track changes to the package.
+* Added a `NEWS.md` file to track changes to the package
