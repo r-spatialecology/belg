@@ -1,5 +1,9 @@
 # belg 0.2.0
 
+* The first vignette added
+
+# belg 0.2.0
+
 * Support for data with missing values added
 
 # belg 0.1.1

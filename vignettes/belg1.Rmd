@@ -67,7 +67,7 @@ get_boltzmann(complex_land)
 get_boltzmann(simple_land)
 ```
 
-The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzman entropy than the simple one.
+The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzmann entropy than the simple one.
 
 The `get_boltzmann()` function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
 As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
