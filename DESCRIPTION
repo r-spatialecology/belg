@@ -18,18 +18,20 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
 Depends:
     R (>= 3.3.0)
-LinkingTo: 
+LinkingTo:
     Rcpp,
     RcppArmadillo
-Imports: 
+Imports:
     Rcpp
-Suggests: 
+Suggests:
     testthat,
     sp,
     raster,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2,
+    rasterVis
 URL: https://github.com/Nowosad/belg
 BugReports: https://github.com/Nowosad/belg/issues
 VignetteBuilder: knitr
