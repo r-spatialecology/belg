@@ -31,19 +31,18 @@ theme_clean = function (base_size = 12, base_family = ""){
 theme_set(theme_clean())
 ```
 
-<!-- intro to belg and the package -->
 Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)).
 The goal of **belg** is to provide an efficient C++ implementation of this method in R.
 It also extend the original idea by allowing calculations on data with negative and missing values.
 
 # Basic example
 
-Let's take two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape.
-
 ```{r, message=FALSE}
 library(raster)
 library(belg)
 ```
+
+Let's take two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape.
 
 ```{r, fig.height=4, echo=FALSE}
 gplot(complex_land) + 
@@ -120,7 +119,7 @@ get_boltzmann(complex_land, relative = FALSE)
 # Calculation of the configurational entropy in a sliding window 
 
 Determining the number of microstates belonging to a defined macrostate in a crucial concept for calculation of the configurational entropy.
-We can explore this topic using five different cases of 2 x 2 windows:
+We explore this topic using five different cases of 2 x 2 windows:
 
 ```{r}
 win_1 = raster(matrix(c(1, 3, 3, 4), ncol = 2))
