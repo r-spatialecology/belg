@@ -45,31 +45,31 @@ library(raster)
 library(belg)
 ```
 
-```{r, fig.height=3, echo=FALSE}
+```{r, fig.height=4, echo=FALSE}
 gplot(complex_land) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4) +
+  geom_text(aes(label = value), size = 4, color = "gray70") +
   coord_equal() +
   scale_fill_viridis_c() +
   labs(title = "Complex landscape")
 gplot(simple_land) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4) +
+  geom_text(aes(label = value), size = 4, color = "gray70") +
   coord_equal() +
   scale_fill_viridis_c() +
   labs(title = "Simple landscape")
 ```
 
-The main function in this package, `get_boltzmann`, calculates the Boltzmann entropy of a landscape gradient:
+The main function in this package, `get_boltzmann()`, calculates the Boltzmann entropy of a landscape gradient:
 
 ```{r}
 get_boltzmann(complex_land)
 get_boltzmann(simple_land)
 ```
 
-The results showed that the complex landscape has a larger value of the Boltzman entropy than the simple one.
+The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzman entropy than the simple one.
 
-The `get_boltzmann` function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
+The `get_boltzmann()` function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
 As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
 
 ```{r}
@@ -82,86 +82,178 @@ It also allows for calculation of the relative (the `relative` argument equal to
 
 # Relative Boltzmann entropy of a landscape gradient
 
-<!-- main idea -->
-<!-- explain the main idea in a few bullets -->
+The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels (.
+The relative configurational entropy is a sum of entropies for all windows.
+
+```{r}
+get_boltzmann(complex_land, relative = TRUE)
+```
 
 # Absolute Boltzmann entropy of a landscape gradient
 
-<!-- how the previous values are recalculated -->
+It is possible to calculate an average value for each sliding window of 2 x 2 pixels and therefore create a resampled version of the original dataset:
 
-# Determining the number of microstates belonging to a defined macrostate
+```{r, fig.height=4, echo=FALSE}
+complex_land_l1 = complex_land
+complex_land_l2 = raster(matrix(c(53, 32, 81, 58, 76, 80, 44, 59, 41, 47, 57, 50, 
+                                  51, 49), ncol = 7))
+gplot(complex_land_l1) + 
+  geom_tile(aes(fill = value), color = "black", size = 2) +
+  geom_text(aes(label = value), size = 4, color = "gray70") +
+  coord_equal() +
+  scale_fill_viridis_c(limits = c(12, 98)) +
+  labs(title = "Original dataset (Level 1)")
+gplot(complex_land_l2) + 
+  geom_tile(aes(fill = value), color = "black", size = 2) +
+  geom_text(aes(label = value), size = 4, color = "gray70") +
+  coord_equal() +
+  scale_fill_viridis_c(limits = c(12, 98)) +
+  labs(title = "Resampled dataset (Level 2)")
+```
+
+The absolute configurational entropy is a sum of relative configurational entropies for all levels, starting from the original data to the resampled dataset with at least two rows or columns.
 
 ```{r}
-ver_1 = raster(matrix(c(1, 3, 3, 4), ncol = 2))
-ver_2 = raster(matrix(c(1, 3, 3, NA), ncol = 2))
-ver_3 = raster(matrix(c(1, 3, NA, NA), ncol = 2))
-ver_4 = raster(matrix(c(1, NA, NA, NA), ncol = 2))
-ver_5 = raster(matrix(c(NA, NA, NA, NA), ncol = 2))
+get_boltzmann(complex_land, relative = FALSE)
+```
+
+# Calculation of the configurational entropy in a sliding window 
+
+Determining the number of microstates belonging to a defined macrostate in a crucial concept for calculation of the configurational entropy.
+We can explore this topic using five different cases of 2 x 2 windows:
+
+```{r}
+win_1 = raster(matrix(c(1, 3, 3, 4), ncol = 2))
+win_2 = raster(matrix(c(1, 3, 3, NA), ncol = 2))
+win_3 = raster(matrix(c(1, 3, NA, NA), ncol = 2))
+win_4 = raster(matrix(c(1, NA, NA, NA), ncol = 2))
+win_5 = raster(matrix(c(NA, NA, NA, NA), ncol = 2))
 ```
 
 ## Data without missing values
 
+The configurational entropy for data without missing values is calculated using the analytical method by Gao (2018).
+
 ```{r, echo = FALSE}
-gplot(ver_1) + 
+val_cols = c("1" = "#fc8d59", "3" = "#ffffbf", "4" = "#91bfdb")
+gplot(win_1) + 
   geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
   geom_text(aes(label = value), size = 6) +
-  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb"))
+  scale_fill_manual(values = val_cols) +
+  labs(title = "Window 1")
 ```
 
+Twenty-four different microstate are possible in the above case. 
+The common (base 10) logarithm of 24 is equal to `r round(log10(24), 6)`.
+We can compare this result to the `get_boltzmann()` output:
+
 ```{r}
-log10(24)
-get_boltzmann(ver_1)
+get_boltzmann(win_1)
 ```
+
+The generalized (resampled) version of this window has one value, `3`, which is a rounded average of the four original values.
 
 ## Data with missing values
 
+The papers of Gao et al. (2017, 2018) only considered data without missing values.
+However, the **belg** package provides a modification allowing for calculation also for data with missing values.
+Cells with `NA` are not considered when calculating microstates.
+
 ```{r, echo = FALSE}
-gplot(ver_2) + 
+gplot(win_2) + 
   geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
   geom_text(aes(label = c(1, 3, 3, "NA")), size = 6) +
-  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb"))
+  scale_fill_manual(values = val_cols) +
+  labs(title = "Window 2")
 ```
 
-```{r}
-log10(3)
-get_boltzmann(ver_2)
-```
+For example, three microstates are possible for the above case:
 
 ```{r, echo = FALSE}
-gplot(ver_3) + 
+win_2_1 = win_2
+win_2_2 = raster(matrix(c(3, 1, 3, NA), ncol = 2))
+win_2_3 = raster(matrix(c(3, 3, 1, NA), ncol = 2))
+
+gplot(win_2_1) + 
+  geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
+  geom_text(aes(label = c(1, 3, 3, "NA")), size = 6) +
+  scale_fill_manual(values = val_cols) +
+  labs(title = "Window 2", subtitle = "Microstate I")
+gplot(win_2_2) + 
+  geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
+  geom_text(aes(label = c(3, 3, 1, "NA")), size = 6) +
+  scale_fill_manual(values = val_cols) +
+  labs(title = "Window 2", subtitle = "Microstate II")
+gplot(win_2_3) + 
+  geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
+  geom_text(aes(label = c(3, 1, 3, "NA")), size = 6) +
+  scale_fill_manual(values = val_cols) +
+  labs(title = "Window 2", subtitle = "Microstate III")
+```
+
+The common (base 10) logarithm of 3 is equal to `r round(log10(3), 6)`.
+
+```{r}
+get_boltzmann(win_2)
+```
+
+The generalized (resampled) version of this window is 2.
+
+```{r, echo = FALSE}
+win_3_1 = win_3
+win_3_2 = raster(matrix(c(3, 1, NA, NA), ncol = 2))
+gplot(win_3_1) + 
   geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
   geom_text(aes(label = c(1, "NA", 3, "NA")), size = 6) +
-  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb"))
+  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb")) +
+  labs(title = "Window 3", subtitle = "Microstate I")
+gplot(win_3_2) + 
+  geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
+  geom_text(aes(label = c(3, "NA", 1, "NA")), size = 6) +
+  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb")) +
+  labs(title = "Window 3", subtitle = "Microstate II")
 ```
+
+The third window has two combinations.
+The common logarithm of 2 is equal to `r round(log10(2), 6)`.
 
 ```{r}
-log10(2)
-get_boltzmann(ver_3)
+get_boltzmann(win_3)
 ```
 
+The generalized (resampled) version of this window is also 2.
+
 ```{r, echo = FALSE}
-gplot(ver_4) + 
+gplot(win_4) + 
   geom_tile(aes(fill = as.factor(value)), color = "black", size = 2) +
   geom_text(aes(label = c(1, "NA", "NA", "NA")), size = 6) +
-  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb"))
+  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb")) +
+  labs(title = "Window 4")
 ```
 
+The fourth window has only one microstate, therefore its common logarithm equals to `r round(log10(1), 6)`.
+
 ```{r}
-log10(1)
-get_boltzmann(ver_4)
+get_boltzmann(win_4)
 ```
+
+The generalized (resampled) version of this window is the same as only existing value - 1.
 
 ```{r, echo = FALSE}
-gplot(ver_5) + 
-  geom_tile(fill = "grey50", color = "black", size = 2) +
+gplot(win_5) + 
+  geom_tile(fill = "white", color = "black", size = 2) +
   geom_text(aes(label = c("NA", "NA", "NA", "NA")), size = 6) +
-  scale_fill_manual(values = c("#fc8d59", "#ffffbf", "#91bfdb"))
+  labs(title = "Window 5")
 ```
 
+Finally, the last window consists of four missing values.
+In these cases, the configurational entropy is zero.
+
 ```{r}
-0
-get_boltzmann(ver_5)
+get_boltzmann(win_5)
 ```
+
+Importantly, the generalized version of this window is represented by NA.
 
 ## References
 
