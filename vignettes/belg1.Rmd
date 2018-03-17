@@ -47,15 +47,15 @@ Let's take two small rasters - `complex_land` representing a complex landscape a
 ```{r, fig.height=4, echo=FALSE}
 gplot(complex_land) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4, color = "gray70") +
+  geom_text(aes(label = value), size = 4, color = "black") +
   coord_equal() +
-  scale_fill_viridis_c() +
+  scale_fill_distiller(palette = "RdYlBu") +
   labs(title = "Complex landscape")
 gplot(simple_land) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4, color = "gray70") +
+  geom_text(aes(label = value), size = 4, color = "black") +
   coord_equal() +
-  scale_fill_viridis_c() +
+  scale_fill_distiller(palette = "RdYlBu") +
   labs(title = "Simple landscape")
 ```
 
@@ -98,15 +98,15 @@ complex_land_l2 = raster(matrix(c(53, 32, 81, 58, 76, 80, 44, 59, 41, 47, 57, 50
                                   51, 49), ncol = 7))
 gplot(complex_land_l1) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4, color = "gray70") +
+  geom_text(aes(label = value), size = 4, color = "black") +
   coord_equal() +
-  scale_fill_viridis_c(limits = c(12, 98)) +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(12, 98)) +
   labs(title = "Original dataset (Level 1)")
 gplot(complex_land_l2) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
-  geom_text(aes(label = value), size = 4, color = "gray70") +
+  geom_text(aes(label = value), size = 4, color = "black") +
   coord_equal() +
-  scale_fill_viridis_c(limits = c(12, 98)) +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(12, 98)) +
   labs(title = "Resampled dataset (Level 2)")
 ```
 
