@@ -31,17 +31,73 @@ theme_clean = function (base_size = 12, base_family = ""){
 theme_set(theme_clean())
 ```
 
-```{r}
-library(belg)
+<!-- intro to belg and the package -->
+Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)).
+The goal of **belg** is to provide an efficient C++ implementation of this method in R.
+It also extend the original idea by allowing calculations on data with negative and missing values.
+
+# Basic example
+
+Let's take two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape.
+
+```{r, message=FALSE}
 library(raster)
+library(belg)
+```
+
+```{r, fig.height=3, echo=FALSE}
+gplot(complex_land) + 
+  geom_tile(aes(fill = value), color = "black", size = 2) +
+  geom_text(aes(label = value), size = 4) +
+  coord_equal() +
+  scale_fill_viridis_c() +
+  labs(title = "Complex landscape")
+gplot(simple_land) + 
+  geom_tile(aes(fill = value), color = "black", size = 2) +
+  geom_text(aes(label = value), size = 4) +
+  coord_equal() +
+  scale_fill_viridis_c() +
+  labs(title = "Simple landscape")
+```
+
+The main function in this package, `get_boltzmann`, calculates the Boltzmann entropy of a landscape gradient:
+
+```{r}
+get_boltzmann(complex_land)
+get_boltzmann(simple_land)
+```
+
+The results showed that the complex landscape has a larger value of the Boltzman entropy than the simple one.
+
+The `get_boltzmann` function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
+As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
+
+```{r}
+get_boltzmann(complex_land) # log10
+get_boltzmann(complex_land, base = "log")
+get_boltzmann(complex_land, base = "log2")
+```
+
+It also allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
+
+# Relative Boltzmann entropy of a landscape gradient
+
+<!-- main idea -->
+<!-- explain the main idea in a few bullets -->
+
+# Absolute Boltzmann entropy of a landscape gradient
+
+<!-- how the previous values are recalculated -->
+
+# Determining the number of microstates belonging to a defined macrostate
+
+```{r}
 ver_1 = raster(matrix(c(1, 3, 3, 4), ncol = 2))
 ver_2 = raster(matrix(c(1, 3, 3, NA), ncol = 2))
 ver_3 = raster(matrix(c(1, 3, NA, NA), ncol = 2))
 ver_4 = raster(matrix(c(1, NA, NA, NA), ncol = 2))
 ver_5 = raster(matrix(c(NA, NA, NA, NA), ncol = 2))
 ```
-
-# Determining the number of microstates belonging to a defined macrostate
 
 ## Data without missing values
 
@@ -106,3 +162,8 @@ gplot(ver_5) +
 0
 get_boltzmann(ver_5)
 ```
+
+## References
+
+- Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient analytical method for computing the Boltzmann entropy of a landscape gradient." Transactions in GIS (2018).
+- Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based solution to calculate the configurational entropy of landscape gradients." Landscape Ecology 32(6) (2017): 1133-1146.
