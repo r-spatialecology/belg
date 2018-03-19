@@ -37,6 +37,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/belg1.html">belg: Boltzmann Entropy of a Landscape Gradient</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="news/index.html">News</a>
 </li>
@@ -69,7 +81,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#belg" class="anchor"></a>belg</h1></div>
 
-<p>Boltzmann entropy (also called configurational entropy) has been recently applied to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al.(2018)). The goal of <strong>belg</strong> is to provide an efficient implementation (in C++) of the method for calculation of the landscape gradient’s Boltzmann entropy in R.</p>
+<p>Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)). The goal of <strong>belg</strong> is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with negative and missing values.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -82,7 +94,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>As an example, we could use two small raster - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape:</p>
+<p>As an example, we could use two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 <span class="kw">library</span>(belg)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(complex_land, simple_land))</code></pre></div>
@@ -137,6 +149,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><a href="https://travis-ci.org/Nowosad/belg"><img src="https://travis-ci.org/Nowosad/belg.png?branch=master" alt="Build Status"></a></li>
 <li><a href="https://codecov.io/gh/Nowosad/belg"><img src="https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=belg"><img src="http://cranlogs.r-pkg.org/badges/belg" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.1194872"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1194872.svg" alt="DOI"></a></li>
 </ul>
 </div>
 
