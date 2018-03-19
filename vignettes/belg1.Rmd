@@ -82,7 +82,7 @@ It also allows for calculation of the relative (the `relative` argument equal to
 # Relative Boltzmann entropy of a landscape gradient
 
 The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels.
-The relative configurational entropy is a sum of entropies for all windows.
+The relative configurational entropy is a sum of entropies for all windows of the original data.
 
 ```{r}
 get_boltzmann(complex_land, relative = TRUE)
