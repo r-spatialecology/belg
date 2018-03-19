@@ -41,7 +41,7 @@ devtools::install_github("Nowosad/belg")
 
 ## Examples
 
-As an example, we could use two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
+As an example, we use two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
 
 ```{r, message=FALSE, fig.height=3}
 library(raster)
