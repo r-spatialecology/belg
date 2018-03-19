@@ -131,7 +131,7 @@ win_5 = raster(matrix(c(NA, NA, NA, NA), ncol = 2))
 
 ## Data without missing values
 
-The configurational entropy for data without missing values is calculated using the analytical method by Gao (2018).
+The configurational entropy for data without missing values is calculated using the analytical method by Gao et al. (2018).
 
 ```{r, echo = FALSE}
 val_cols = c("1" = "#fc8d59", "3" = "#ffffbf", "4" = "#91bfdb")
