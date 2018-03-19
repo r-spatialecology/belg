@@ -1,4 +1,4 @@
-# belg 0.2.0
+# belg 0.2.1
 
 * The first vignette added
 
