@@ -20,8 +20,9 @@ knitr::opts_chunk$set(
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1194872.svg)](https://doi.org/10.5281/zenodo.1194872)
 
-Boltzmann entropy (also called configurational entropy) has been recently applied to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al.(2018)).
-The goal of **belg** is to provide an efficient implementation (in C++) of the method for calculation of the landscape gradient's Boltzmann entropy in R.
+Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)).
+The goal of **belg** is to provide an efficient C++ implementation of this method in R.
+It also extend the original idea by allowing calculations on data with negative and missing values.
 
 ## Installation
 
@@ -40,7 +41,7 @@ devtools::install_github("Nowosad/belg")
 
 ## Examples
 
-As an example, we could use two small raster - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
+As an example, we could use two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
 
 ```{r, message=FALSE, fig.height=3}
 library(raster)
