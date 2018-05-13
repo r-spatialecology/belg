@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
+  <a href="..//index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -75,7 +75,7 @@
       <h1>belg: Boltzmann Entropy of a Landscape Gradient</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2018-03-19</h4>
+            <h4 class="date">2018-05-13</h4>
           </div>
 
     
@@ -89,26 +89,26 @@
 <span class="kw">library</span>(belg)</code></pre></div>
 <p>Let’s take two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-2-1.png" width="672"><img src="belg1_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<p>The main function in this package, <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code>, calculates the Boltzmann entropy of a landscape gradient:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land)
+<p>The main function in this package, <code>get_boltzmann()</code>, calculates the Boltzmann entropy of a landscape gradient:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land)
 <span class="co">#&gt; [1] 48.43241</span>
-<span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(simple_land)
+<span class="kw">get_boltzmann</span>(simple_land)
 <span class="co">#&gt; [1] 18.3818</span></code></pre></div>
 <p>The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzmann entropy than the simple one.</p>
-<p>The <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land) <span class="co"># log10</span>
+<p>The <code>get_boltzmann()</code> function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land) <span class="co"># log10</span>
 <span class="co">#&gt; [1] 48.43241</span>
-<span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log"</span>)
+<span class="kw">get_boltzmann</span>(complex_land, <span class="dt">base =</span> <span class="st">"log"</span>)
 <span class="co">#&gt; [1] 111.5198</span>
-<span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log2"</span>)
+<span class="kw">get_boltzmann</span>(complex_land, <span class="dt">base =</span> <span class="st">"log2"</span>)
 <span class="co">#&gt; [1] 160.889</span></code></pre></div>
 <p>It also allows for calculation of the relative (the <code>relative</code> argument equal to <code>TRUE</code>) and absolute Boltzmann entropy of a landscape gradient.</p>
 </div>
 <div id="relative-boltzmann-entropy-of-a-landscape-gradient" class="section level1">
 <h1 class="hasAnchor">
 <a href="#relative-boltzmann-entropy-of-a-landscape-gradient" class="anchor"></a>Relative Boltzmann entropy of a landscape gradient</h1>
-<p>The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels. The relative configurational entropy is a sum of entropies for all windows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
+<p>The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels. The relative configurational entropy is a sum of entropies for all windows of the original data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] 35.50168</span></code></pre></div>
 </div>
 <div id="absolute-boltzmann-entropy-of-a-landscape-gradient" class="section level1">
@@ -117,7 +117,7 @@
 <p>It is possible to calculate an average value for each sliding window of 2 x 2 pixels and therefore create a resampled version of the original dataset:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-6-1.png" width="672"><img src="belg1_files/figure-html/unnamed-chunk-6-2.png" width="672"></p>
 <p>The absolute configurational entropy is a sum of relative configurational entropies for all levels, starting from the original data to the resampled dataset with at least two rows or columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">relative =</span> <span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land, <span class="dt">relative =</span> <span class="ot">FALSE</span>)
 <span class="co">#&gt; [1] 48.43241</span></code></pre></div>
 </div>
 <div id="calculation-of-the-configurational-entropy-in-a-sliding-window" class="section level1">
@@ -134,8 +134,8 @@ win_<span class="dv">5</span> =<span class="st"> </span><span class="kw"><a href
 <a href="#data-without-missing-values" class="anchor"></a>Data without missing values</h2>
 <p>The configurational entropy for data without missing values is calculated using the analytical method by Gao et al. (2018).</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<p>Twenty-four different microstate are possible in the above case. The common (base 10) logarithm of 24 is equal to 1.380211. We can compare this result to the <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> output:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">1</span>)
+<p>Twenty-four different microstate are possible in the above case. The common (base 10) logarithm of 24 is equal to 1.380211. We can compare this result to the <code>get_boltzmann()</code> output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(win_<span class="dv">1</span>)
 <span class="co">#&gt; [1] 1.380211</span></code></pre></div>
 <p>The generalized (resampled) version of this window has one value, <code>3</code>, which is a rounded average of the four original values.</p>
 </div>
@@ -147,22 +147,22 @@ win_<span class="dv">5</span> =<span class="st"> </span><span class="kw"><a href
 <p>For example, three microstates are possible for the above case:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-12-1.png" width="672"><img src="belg1_files/figure-html/unnamed-chunk-12-2.png" width="672"><img src="belg1_files/figure-html/unnamed-chunk-12-3.png" width="672"></p>
 <p>The common (base 10) logarithm of 3 is equal to 0.477121.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">2</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(win_<span class="dv">2</span>)
 <span class="co">#&gt; [1] 0.4771213</span></code></pre></div>
 <p>The generalized (resampled) version of this window is 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-14-1.png" width="672"><img src="belg1_files/figure-html/unnamed-chunk-14-2.png" width="672"></p>
 <p>The third window has two combinations. The common logarithm of 2 is equal to 0.30103.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">3</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(win_<span class="dv">3</span>)
 <span class="co">#&gt; [1] 0.30103</span></code></pre></div>
 <p>The generalized (resampled) version of this window is also 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-16-1.png" width="672"></p>
 <p>The fourth window has only one microstate, therefore its common logarithm equals to 0.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">4</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(win_<span class="dv">4</span>)
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>The generalized (resampled) version of this window is the same as only existing value - 1.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-18-1.png" width="672"></p>
 <p>Finally, the last window consists of four missing values. In these cases, the configurational entropy is zero.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">5</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(win_<span class="dv">5</span>)
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Importantly, the generalized version of this window is represented by NA.</p>
 </div>

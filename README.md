@@ -3,7 +3,7 @@
 belg
 ====
 
-[![CRAN status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg) [![Build Status](https://travis-ci.org/Nowosad/belg.png?branch=master)](https://travis-ci.org/Nowosad/belg) [![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1194872.svg)](https://doi.org/10.5281/zenodo.1194872)
+[![CRAN status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg) [![Build Status](https://travis-ci.org/Nowosad/belg.png?branch=master)](https://travis-ci.org/Nowosad/belg) [![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg)](https://doi.org/10.5281/zenodo.1209419)
 
 Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)). The goal of **belg** is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with negative and missing values.
 

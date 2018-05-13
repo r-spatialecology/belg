@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
+  <a href="/index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -94,22 +94,22 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>As an example, we could use two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape:</p>
+<p>As an example, we use two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 <span class="kw">library</span>(belg)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(complex_land, simple_land))</code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-1-1.png" width="100%"></p>
 <p>The main function in this package, <code>get_boltzmann</code>, calculates the Boltzmann entropy of a landscape gradient:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land)
 <span class="co">#&gt; [1] 48.43241</span>
-<span class="kw"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(simple_land)
+<span class="kw">get_boltzmann</span>(simple_land)
 <span class="co">#&gt; [1] 18.3818</span></code></pre></div>
 <p>This function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. It also allows for calculation of the relative (the <code>relative</code> argument equal to <code>TRUE</code>) and absolute Boltzmann entropy of a landscape gradient. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_boltzmann</span>(complex_land, <span class="dt">base =</span> <span class="st">"log"</span>)
 <span class="co">#&gt; [1] 111.5198</span>
-<span class="kw"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
+<span class="kw">get_boltzmann</span>(complex_land, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] 35.50168</span>
-<span class="kw"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log2"</span>, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
+<span class="kw">get_boltzmann</span>(complex_land, <span class="dt">base =</span> <span class="st">"log2"</span>, <span class="dt">relative =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] 117.934</span></code></pre></div>
 </div>
 <div id="references" class="section level2">
@@ -149,7 +149,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><a href="https://travis-ci.org/Nowosad/belg"><img src="https://travis-ci.org/Nowosad/belg.png?branch=master" alt="Build Status"></a></li>
 <li><a href="https://codecov.io/gh/Nowosad/belg"><img src="https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=belg"><img src="http://cranlogs.r-pkg.org/badges/belg" alt="CRAN RStudio mirror downloads"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.1194872"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1194872.svg" alt="DOI"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.1209419"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg" alt="DOI"></a></li>
 </ul>
 </div>
 

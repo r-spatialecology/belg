@@ -57,11 +57,6 @@ int count_permutations(arma::vec number)
 double get_boltzmann_default(arma::mat x, std::string base, bool relative){
   // float to int
   x = round(x);
-  int min_value = x.min();
-  if (min_value < 0){
-    // negative values to positive ones
-    x = x - min_value;
-  }
   double res = 0;
   while ((x.n_rows != 1) && (x.n_cols != 1)) {
     int num_r = x.n_rows - 1;
