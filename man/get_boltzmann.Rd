@@ -2,10 +2,15 @@
 % Please edit documentation in R/get_boltzmann.R
 \name{get_boltzmann}
 \alias{get_boltzmann}
+\alias{get_boltzmann}
 \alias{get_boltzmann.default}
+\alias{get_boltzmann}
 \alias{get_boltzmann.array}
+\alias{get_boltzmann}
 \alias{get_boltzmann.RasterLayer}
+\alias{get_boltzmann}
 \alias{get_boltzmann.RasterStack}
+\alias{get_boltzmann}
 \alias{get_boltzmann.RasterBrick}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
