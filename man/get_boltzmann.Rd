@@ -2,15 +2,10 @@
 % Please edit documentation in R/get_boltzmann.R
 \name{get_boltzmann}
 \alias{get_boltzmann}
-\alias{get_boltzmann}
 \alias{get_boltzmann.default}
-\alias{get_boltzmann}
 \alias{get_boltzmann.array}
-\alias{get_boltzmann}
 \alias{get_boltzmann.RasterLayer}
-\alias{get_boltzmann}
 \alias{get_boltzmann.RasterStack}
-\alias{get_boltzmann}
 \alias{get_boltzmann.RasterBrick}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
@@ -20,11 +15,14 @@ get_boltzmann(x, base = "log10", relative = FALSE)
 
 \method{get_boltzmann}{array}(x, base = "log10", relative = FALSE)
 
-\method{get_boltzmann}{RasterLayer}(x, base = "log10", relative = FALSE)
+\method{get_boltzmann}{RasterLayer}(x, base = "log10",
+  relative = FALSE)
 
-\method{get_boltzmann}{RasterStack}(x, base = "log10", relative = FALSE)
+\method{get_boltzmann}{RasterStack}(x, base = "log10",
+  relative = FALSE)
 
-\method{get_boltzmann}{RasterBrick}(x, base = "log10", relative = FALSE)
+\method{get_boltzmann}{RasterBrick}(x, base = "log10",
+  relative = FALSE)
 }
 \arguments{
 \item{x}{RasterLayer, RasterStack, RasterBrick, matrix, or array}

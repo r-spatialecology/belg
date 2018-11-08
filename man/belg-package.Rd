@@ -7,9 +7,9 @@
 \title{belg: Boltzmann Entropy of a Landscape Gradient}
 \description{
 Calculates the Boltzmann entropy of a landscape gradient.
-This package uses the analytical method created by Gao, P., Zhang, H.
-and Li, Z., 2018 (<doi:10.1111/tgis.12315>). It also extend the original
-idea by allowing calculations on data with missing values.
+    This package uses the analytical method created by Gao, P., Zhang, H.
+    and Li, Z., 2018 (<doi:10.1111/tgis.12315>). It also extend the original 
+    idea by allowing calculations on data with missing values.
 }
 \seealso{
 Useful links:
