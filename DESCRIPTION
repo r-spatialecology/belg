@@ -16,7 +16,7 @@ Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Depends:
     R (>= 3.3.0)
 LinkingTo:
@@ -33,6 +33,6 @@ Suggests:
     rmarkdown,
     ggplot2,
     rasterVis
-URL: https://github.com/Nowosad/belg
-BugReports: https://github.com/Nowosad/belg/issues
+URL: https://github.com/r-spatialecology/belg
+BugReports: https://github.com/r-spatialecology/belg/issues
 VignetteBuilder: knitr
