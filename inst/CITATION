@@ -1,0 +1,11 @@
+citHeader("To cite belg in publications, please use:")
+
+citEntry(entry = "Manual",
+    title = "belg: Boltzmann Entropy of a Landscape Gradient",
+    author = c(person("Jakub", "Nowosad")),
+    year = "2018",
+    note = "R package version 0.2.3",
+    url = "https://CRAN.R-project.org/package=belg",
+    textVersion = "Nowosad, Jakub(2018). belg: Boltzmann Entropy of a Landscape Gradient. R package version 0.2.3.
+  https://CRAN.R-project.org/package=belg"
+)
