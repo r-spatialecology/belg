@@ -5,3 +5,7 @@ get_boltzmann_default <- function(x, base, relative) {
     .Call('_belg_get_boltzmann_default', PACKAGE = 'belg', x, base, relative)
 }
 
+get_boltzmann_aggregation <- function(x, base, relative) {
+    .Call('_belg_get_boltzmann_aggregation', PACKAGE = 'belg', x, base, relative)
+}
+

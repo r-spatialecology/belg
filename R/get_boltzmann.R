@@ -5,6 +5,9 @@
 #' @param x RasterLayer, RasterStack, RasterBrick, matrix, or array
 #' @param base A logarithm base ("log", "log2" or "log10")
 #' @param relative TRUE/FALSE
+#' @param method A method used. Either "hierarchy" (default) for
+#' the hierarchy-based method (Gao et al., 2017) or "aggregation"
+#' for the aggregation-based method (Gao et al., 2019)
 #'
 #' @return a numeric vector
 #'
@@ -22,6 +25,11 @@
 #' analytical method for computing the Boltzmann entropy of a landscape
 #' gradient." Transactions in GIS (2018).
 #'
+#' @references Gao, Peichao and Zhilin Li. "Aggregation-based method
+#' for computing absolute Boltzmann entropy of landscape gradient
+#' with full thermodynamic consistency"
+#' Landscape Ecology (2019)
+#'
 #' @examples
 #' new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
 #'           15, 55, 85, 69, 12, 52, 25, 56,
@@ -32,48 +40,61 @@
 #' get_boltzmann(lg, relative = TRUE, base = "log2")
 #' get_boltzmann(lg, relative = TRUE, base = "log")
 #'
+#' \donttest{
+#'   get_boltzmann(lg, relative = FALSE, method = "aggregation")
+#'   get_boltzmann(lg, relative = TRUE, method = "aggregation")
+#' }
+#'
 #' @name get_boltzmann
 #' @export
-get_boltzmann = function(x, base = "log10", relative = FALSE) UseMethod("get_boltzmann")
+get_boltzmann = function(x, base = "log10", relative = FALSE, method = "hierarchy") UseMethod("get_boltzmann")
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.default = function(x, base = "log10", relative = FALSE){
-  get_boltzmann_default(x, base, relative)
+get_boltzmann.default = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+  if (method == "hierarchy"){
+    get_boltzmann_default(x, base, relative)
+  } else if (method == "aggregation"){
+    get_boltzmann_aggregation(x, base, relative)
+  }
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.array = function(x, base = "log10", relative = FALSE){
-  apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
+get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+  if (method == "hierarchy"){
+    apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
+  } else if (method == "aggregation"){
+    apply(x, MARGIN = 3, get_boltzmann_aggregation, base, relative)
+  }
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE){
+get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first")
-  get_boltzmann(raster::as.matrix(x), base = base, relative = relative)
+  get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE){
+get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first")
-  get_boltzmann(raster::as.array(x), base = base, relative = relative)
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE){
+get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first")
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first")
-  get_boltzmann(raster::as.array(x), base = base, relative = relative)
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
 }
