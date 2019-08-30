@@ -52,8 +52,8 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
             // if three values are NA
             wu = 1;
           }
-          Rcout << "The value of jj : " << jj << "\n";
-          Rcout << "The value of a ii : " << ii << "\n";
+          // Rcout << "The value of jj : " << jj << "\n";
+          // Rcout << "The value of a ii : " << ii << "\n";
           scaled(ii, jj) = round(arma::mean(sub_x_v));
           if (base == "log"){
             result(ii, jj) = log(static_cast<double>(wu));
