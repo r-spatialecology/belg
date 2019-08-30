@@ -75,9 +75,12 @@ get_boltzmann(complex_land, base = "log2", relative = TRUE)
 
 ## References
 
-  - Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical
-    method for computing the Boltzmann entropy of a landscape gradient.”
-    Transactions in GIS (2018).
   - Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution
     to calculate the configurational entropy of landscape gradients.”
     Landscape Ecology 32(6) (2017): 1133-1146.
+  - Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical
+    method for computing the Boltzmann entropy of a landscape gradient.”
+    Transactions in GIS (2018).
+  - Gao, Peichao and Zhilin Li. “Aggregation-based method for computing
+    absolute Boltzmann entropy of landscape gradient with full
+    thermodynamic consistency.” Landscape Ecology (2019).
