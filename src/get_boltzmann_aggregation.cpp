@@ -17,7 +17,7 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
     throw Rcpp::exception("Number of rows and columns must be a multiple of 2.", false);
   }
 
-  while ((x.n_rows > 2) && (x.n_cols > 2)) {
+  while ((x.n_rows >= 2) && (x.n_cols >= 2)) {
     int new_num_r = x.n_rows / 2;
     int new_num_c = x.n_cols / 2;
     arma::mat scaled(new_num_r, new_num_c);

@@ -14,9 +14,9 @@ downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/pa
 
 Boltzmann entropy (also called configurational entropy) has been
 recently adopted to analyze entropy of landscape gradients (Gao et al.
-(2017), Gao et al. (2018)). The goal of **belg** is to provide an
-efficient C++ implementation of this method in R. It also extend the
-original idea by allowing calculations on data with missing values.
+(2017, 2018, 2019)). The goal of **belg** is to provide an efficient C++
+implementation of this method in R. It also extend the original idea by
+allowing calculations on data with missing values.
 
 ## Installation
 
