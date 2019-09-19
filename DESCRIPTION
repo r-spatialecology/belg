@@ -34,6 +34,6 @@ Suggests:
     rmarkdown,
     ggplot2,
     rasterVis
-URL: https://github.com/r-spatialecology/belg
+URL: https://r-spatialecology.github.io/belg/
 BugReports: https://github.com/r-spatialecology/belg/issues
 VignetteBuilder: knitr
