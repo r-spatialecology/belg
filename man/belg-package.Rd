@@ -8,13 +8,14 @@
 \description{
 Calculates the Boltzmann entropy of a landscape gradient.
     This package uses the analytical method created by Gao, P., Zhang, H.
-    and Li, Z., 2018 (<doi:10.1111/tgis.12315>). It also extend the original 
-    idea by allowing calculations on data with missing values.
+    and Li, Z., 2018 (<doi:10.1111/tgis.12315>) and by Gao, P. and Li, Z., 2019
+    (<doi:10.1007/s10980-019-00854-3>). It also extend the original ideas by
+    allowing calculations on data with missing values.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/r-spatialecology/belg}
+  \item \url{https://r-spatialecology.github.io/belg/}
   \item Report bugs at \url{https://github.com/r-spatialecology/belg/issues}
 }
 

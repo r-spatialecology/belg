@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg)](https://doi.org/10.5281/zenodo.1209419)
 
-Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)).
+Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017, 2018, 2019)).
 The goal of **belg** is to provide an efficient C++ implementation of this method in R.
 It also extend the original idea by allowing calculations on data with missing values.
 
@@ -41,33 +41,41 @@ devtools::install_github("r-spatialecology/belg")
 
 ## Examples
 
-As an example, we use two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
+As an example, we use two rasters - `land_gradient1` representing a complex landscape and `land_gradient2` representing a simple landscape:
 
 ```{r, message=FALSE, fig.height=3}
 library(raster)
 library(belg)
-plot(stack(complex_land, simple_land))
+plot(stack(land_gradient1, land_gradient2))
 ```
 
-The main function in this package, `get_boltzmann`, calculates the Boltzmann entropy of a landscape gradient:
+The main function in this package, `get_boltzmann()`, calculates the Boltzmann entropy of a landscape gradient:
 
 ```{r}
-get_boltzmann(complex_land)
-get_boltzmann(simple_land)
+get_boltzmann(land_gradient1)
+get_boltzmann(land_gradient2)
 ```
 
 This function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
-It also allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
+It allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
 As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
 
 ```{r}
-get_boltzmann(complex_land, base = "log")
-get_boltzmann(complex_land, relative = TRUE)
-get_boltzmann(complex_land, base = "log2", relative = TRUE)
+get_boltzmann(land_gradient1, base = "log")
+get_boltzmann(land_gradient1, relative = TRUE)
+get_boltzmann(land_gradient1, base = "log2", relative = TRUE)
+```
+
+Two methods of calculating the Boltzmann entropy of a landscape gradient are available: `"hierarchy"` (default) for the hierarchy-based method (Gao et al., 2017) or `"aggregation"` for the aggregation-based method (Gao et al., 2019).
+The aggregation-based method requires that the number of rows and columns in the input data must be a multiple of 2.
+
+```{r}
+get_boltzmann(land_gradient1, method = "aggregation")
+get_boltzmann(land_gradient1, relative = TRUE, method = "aggregation")
 ```
 
 ## References
 
-- Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient analytical method for computing the Boltzmann entropy of a landscape gradient." Transactions in GIS (2018).
 - Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based solution to calculate the configurational entropy of landscape gradients." Landscape Ecology 32(6) (2017): 1133-1146.
-
+- Gao, Peichao, Hong Zhang, and Zhilin Li. "An efficient analytical method for computing the Boltzmann entropy of a landscape gradient." Transactions in GIS (2018).
+- Gao, Peichao and Zhilin Li. "Aggregation-based method for computing absolute Boltzmann entropy of landscape gradient with full thermodynamic consistency." Landscape Ecology (2019).

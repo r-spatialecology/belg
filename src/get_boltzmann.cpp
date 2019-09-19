@@ -1,57 +1,9 @@
 #include <RcppArmadillo.h>
+#include "utils.h"
+
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-
-int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
-  int wu = 0;
-
-  if (d == 0) {
-    if (d_a == d_b) {
-      if (x_a == x_b) {
-        wu = 1;
-      } else {
-        wu = 6;
-      }
-    } else {
-      if (x_a == x_b) {
-        wu = 4;
-      } else {
-        wu = 12;
-      }
-    }
-  } else {
-    if (d_a == d_b) {
-      if (x_a == x_b) {
-        wu = 12 + 24 * (d - 1) + 6;
-      } else {
-        wu = 24 + 24 * (d - 1) + 6;
-      }
-    } else {
-      if (x_a == x_b) {
-        wu = 12 + 24 * (d - 1) + 12;
-      } else {
-        wu = 24 + 24 * (d - 1) + 12;
-      }
-    }
-  }
-  return(wu);
-}
-
-int count_permutations(arma::vec number)
-{
-  // vector sort
-  std::sort(number.begin(), number.end());
-  // result init
-  int count = 0;
-  // iterate for all permutation possible
-  do
-  {
-    count++;
-    // generate next permutation until it is possible
-  } while(std::next_permutation(number.begin(), number.end()));
-  return count;
-}
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::mat x, std::string base, bool relative){

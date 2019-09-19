@@ -3,12 +3,12 @@
 \docType{data}
 \name{complex_land}
 \alias{complex_land}
-\title{Complex landscape}
-\format{An object of class \code{RasterLayer} of dimension 3 x 8 x 1.}
+\title{Complex landscape (small)}
+\format{An object of class \code{RasterLayer} of dimension 6 x 8 x 1.}
 \usage{
 complex_land
 }
 \description{
-A dataset containing artificial complex landscape
+A dataset containing small artificial complex landscape
 }
 \keyword{datasets}

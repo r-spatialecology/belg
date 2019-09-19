@@ -19,9 +19,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_boltzmann_aggregation
+double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative);
+RcppExport SEXP _belg_get_boltzmann_aggregation(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    Rcpp::traits::input_parameter< bool >::type relative(relativeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_boltzmann_aggregation(x, base, relative));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_belg_get_boltzmann_default", (DL_FUNC) &_belg_get_boltzmann_default, 3},
+    {"_belg_get_boltzmann_aggregation", (DL_FUNC) &_belg_get_boltzmann_aggregation, 3},
     {NULL, NULL, 0}
 };
 
