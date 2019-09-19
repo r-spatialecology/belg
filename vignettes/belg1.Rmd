@@ -94,8 +94,15 @@ It is possible to calculate an average value for each sliding window of 2 x 2 pi
 
 ```{r, fig.height=4, echo=FALSE}
 complex_land_l1 = complex_land
-complex_land_l2 = raster(matrix(c(53, 32, 81, 58, 76, 80, 44, 59, 41, 47, 57, 50, 
-                                  51, 49), ncol = 7))
+raster_template = raster(ncols = 7, nrows = 5, xmn = 0, xmx = 7, ymn = 0, ymx = 5)
+complex_land_l2 = raster(matrix(c(53, 32, 50, 53, 32, 
+                                  81, 58, 69, 81, 58,
+                                  76, 80, 79, 76, 80,
+                                  44, 59, 62, 44, 59, 
+                                  41, 47, 56, 41, 47, 
+                                  57, 50, 69, 57, 50, 
+                                  51, 49, 59, 51, 49), ncol = 7),
+                         template = raster_template)
 gplot(complex_land_l1) + 
   geom_tile(aes(fill = value), color = "black", size = 2) +
   geom_text(aes(label = value), size = 4, color = "black") +
