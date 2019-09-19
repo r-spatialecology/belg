@@ -41,29 +41,37 @@ devtools::install_github("r-spatialecology/belg")
 
 ## Examples
 
-As an example, we use two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape:
+As an example, we use two rasters - `land_gradient1` representing a complex landscape and `land_gradient2` representing a simple landscape:
 
 ```{r, message=FALSE, fig.height=3}
 library(raster)
 library(belg)
-plot(stack(complex_land, simple_land))
+plot(stack(land_gradient1, land_gradient2))
 ```
 
-The main function in this package, `get_boltzmann`, calculates the Boltzmann entropy of a landscape gradient:
+The main function in this package, `get_boltzmann()`, calculates the Boltzmann entropy of a landscape gradient:
 
 ```{r}
-get_boltzmann(complex_land)
-get_boltzmann(simple_land)
+get_boltzmann(land_gradient1)
+get_boltzmann(land_gradient2)
 ```
 
 This function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
-It also allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
+It allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
 As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
 
 ```{r}
-get_boltzmann(complex_land, base = "log")
-get_boltzmann(complex_land, relative = TRUE)
-get_boltzmann(complex_land, base = "log2", relative = TRUE)
+get_boltzmann(land_gradient1, base = "log")
+get_boltzmann(land_gradient1, relative = TRUE)
+get_boltzmann(land_gradient1, base = "log2", relative = TRUE)
+```
+
+Two methods of calculating the Boltzmann entropy of a landscape gradient are available: `"hierarchy"` (default) for the hierarchy-based method (Gao et al., 2017) or `"aggregation"` for the aggregation-based method (Gao et al., 2019).
+The aggregation-based method requires that the number of rows and columns in the input data must be a multiple of 2.
+
+```{r}
+get_boltzmann(land_gradient1, method = "aggregation")
+get_boltzmann(land_gradient1, relative = TRUE, method = "aggregation")
 ```
 
 ## References
