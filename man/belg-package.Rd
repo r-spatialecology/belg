@@ -15,7 +15,7 @@ Calculates the Boltzmann entropy of a landscape gradient.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/r-spatialecology/belg}
+  \item \url{https://r-spatialecology.github.io/belg/}
   \item Report bugs at \url{https://github.com/r-spatialecology/belg/issues}
 }
 
