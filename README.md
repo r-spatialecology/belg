@@ -3,15 +3,14 @@
 
 # belg
 
-<!-- [![CRAN status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg) -->
-
-<!-- [![Build Status](https://travis-ci.org/r-spatialecology/belg.png?branch=master)](https://travis-ci.org/r-spatialecology/belg) -->
-
-<!-- [![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg) -->
-
-<!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg) -->
-
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg)](https://doi.org/10.5281/zenodo.1209419) -->
+[![CRAN
+status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg)
+[![Build
+Status](https://travis-ci.org/r-spatialecology/belg.png?branch=master)](https://travis-ci.org/r-spatialecology/belg)
+[![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg)](https://doi.org/10.5281/zenodo.1209419)
 
 Boltzmann entropy (also called configurational entropy) has been
 recently adopted to analyze entropy of landscape gradients (Gao et al.
@@ -75,10 +74,10 @@ get_boltzmann(land_gradient1, base = "log2", relative = TRUE)
 ```
 
 Two methods of calculating the Boltzmann entropy of a landscape gradient
-are available: `"hierarchy"` for the hierarchy-based method (Gao et al.,
-2017) or `"aggregation"` for the aggregation-based method (Gao et al.,
-2019). The aggregation-based method requires that the number of rows and
-columns in the input data must be a multiple of 2.
+are available: `"hierarchy"` (default) for the hierarchy-based method
+(Gao et al., 2017) or `"aggregation"` for the aggregation-based method
+(Gao et al., 2019). The aggregation-based method requires that the
+number of rows and columns in the input data must be a multiple of 2.
 
 ``` r
 get_boltzmann(land_gradient1, method = "aggregation")
