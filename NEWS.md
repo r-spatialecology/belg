@@ -1,3 +1,7 @@
+# belg 1.0.1
+
+* ...
+
 # belg 1.0.0
 
 * The ["Aggregation-based method for computing absolute Boltzmann entropy of landscape gradient with full thermodynamic consistency"](https://doi.org/10.1007/s10980-019-00854-3) added
