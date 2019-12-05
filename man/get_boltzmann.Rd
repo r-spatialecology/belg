@@ -3,29 +3,26 @@
 \name{get_boltzmann}
 \alias{get_boltzmann}
 \alias{get_boltzmann.default}
+\alias{get_boltzmann.matrix}
 \alias{get_boltzmann.array}
 \alias{get_boltzmann.RasterLayer}
 \alias{get_boltzmann.RasterStack}
 \alias{get_boltzmann.RasterBrick}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
-get_boltzmann(x, base = "log10", relative = FALSE,
-  method = "hierarchy")
+get_boltzmann(x, base = "log10", relative = FALSE, method = "hierarchy")
 
-\method{get_boltzmann}{default}(x, base = "log10", relative = FALSE,
-  method = "hierarchy")
+\method{get_boltzmann}{default}(x, base = "log10", relative = FALSE, method = "hierarchy")
 
-\method{get_boltzmann}{array}(x, base = "log10", relative = FALSE,
-  method = "hierarchy")
+\method{get_boltzmann}{matrix}(x, base = "log10", relative = FALSE, method = "hierarchy")
 
-\method{get_boltzmann}{RasterLayer}(x, base = "log10",
-  relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{array}(x, base = "log10", relative = FALSE, method = "hierarchy")
 
-\method{get_boltzmann}{RasterStack}(x, base = "log10",
-  relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{RasterLayer}(x, base = "log10", relative = FALSE, method = "hierarchy")
 
-\method{get_boltzmann}{RasterBrick}(x, base = "log10",
-  relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{RasterStack}(x, base = "log10", relative = FALSE, method = "hierarchy")
+
+\method{get_boltzmann}{RasterBrick}(x, base = "log10", relative = FALSE, method = "hierarchy")
 }
 \arguments{
 \item{x}{RasterLayer, RasterStack, RasterBrick, matrix, or array}

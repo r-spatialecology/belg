@@ -62,13 +62,13 @@ get_boltzmann.default = function(x, base = "log10", relative = FALSE, method = "
 
 ##' @name get_boltzmann
 ##' @export
-# get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
-#   if (method == "hierarchy"){
-#     get_boltzmann_default(x, base, relative)
-#   } else if (method == "aggregation"){
-#     get_boltzmann_aggregation(x, base, relative)
-#   }
-# }
+get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+  if (method == "hierarchy"){
+    get_boltzmann_default(x, base, relative)
+  } else if (method == "aggregation"){
+    get_boltzmann_aggregation(x, base, relative)
+  }
+}
 
 #' @name get_boltzmann
 #' @export
