@@ -7,7 +7,7 @@
 status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg)
 [![Build
 Status](https://travis-ci.org/r-spatialecology/belg.png?branch=master)](https://travis-ci.org/r-spatialecology/belg)
-[![codecov](https://codecov.io/gh/Nowosad/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/belg)
+[![codecov](https://codecov.io/gh/r-spatialecology/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/r-spatialecology/belg)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg)](https://doi.org/10.5281/zenodo.1209419)
