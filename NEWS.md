@@ -1,3 +1,7 @@
+# belg 1.0.2
+
+* Moves raster to Imports
+
 # belg 1.0.1
 
 * Adds compability with R 4.0.0 (matrix objects now also inherit from class "array")
