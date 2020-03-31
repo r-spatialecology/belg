@@ -4,7 +4,9 @@
 \name{simple_land}
 \alias{simple_land}
 \title{Simple landscape (small)}
-\format{An object of class \code{RasterLayer} of dimension 6 x 8 x 1.}
+\format{
+An object of class \code{RasterLayer} of dimension 6 x 8 x 1.
+}
 \usage{
 simple_land
 }

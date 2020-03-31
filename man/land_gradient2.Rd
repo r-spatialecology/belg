@@ -4,7 +4,9 @@
 \name{land_gradient2}
 \alias{land_gradient2}
 \title{Simple landscape}
-\format{An object of class \code{RasterLayer} of dimension 512 x 512 x 1.}
+\format{
+An object of class \code{RasterLayer} of dimension 512 x 512 x 1.
+}
 \usage{
 land_gradient2
 }

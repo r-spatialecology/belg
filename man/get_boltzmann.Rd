@@ -59,11 +59,6 @@ get_boltzmann(lg, relative = FALSE, base = "log10")
 get_boltzmann(lg, relative = TRUE, base = "log2")
 get_boltzmann(lg, relative = TRUE, base = "log")
 
-\donttest{
-  get_boltzmann(lg, relative = FALSE, method = "aggregation")
-  get_boltzmann(lg, relative = TRUE, method = "aggregation")
-}
-
 }
 \references{
 Gao, Peichao, Hong Zhang, and Zhilin Li. "A hierarchy-based

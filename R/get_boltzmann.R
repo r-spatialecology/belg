@@ -41,11 +41,6 @@
 #' get_boltzmann(lg, relative = TRUE, base = "log2")
 #' get_boltzmann(lg, relative = TRUE, base = "log")
 #'
-#' \donttest{
-#'   get_boltzmann(lg, relative = FALSE, method = "aggregation")
-#'   get_boltzmann(lg, relative = TRUE, method = "aggregation")
-#' }
-#'
 #' @name get_boltzmann
 #' @export
 get_boltzmann = function(x, base = "log10", relative = FALSE, method = "hierarchy") UseMethod("get_boltzmann")
