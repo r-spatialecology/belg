@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>belg: Boltzmann Entropy of a Landscape Gradient • belg</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="belg: Boltzmann Entropy of a Landscape Gradient">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="belg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -62,7 +62,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/r-spatialecology/belg/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -75,12 +82,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>belg: Boltzmann Entropy of a Landscape Gradient</h1>
+      <h1 data-toc-skip>belg: Boltzmann Entropy of a Landscape Gradient</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2019-10-16</h4>
+            <h4 class="date">2020-04-02</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/r-spatialecology/belg/blob/master/vignettes/belg1.Rmd"><code>vignettes/belg1.Rmd</code></a></small>
       <div class="hidden name"><code>belg1.Rmd</code></div>
 
     </div>
@@ -91,31 +98,31 @@
 <div id="basic-example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(raster)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(belg)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">raster</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">belg</span>)</pre></body></html></div>
 <p>Let’s take two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 <p>The main function in this package, <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code>, calculates the Boltzmann entropy of a landscape gradient:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] 191.1567</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(simple_land)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [1] 104.8581</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>)
+<span class="co">#&gt; [1] 191.1567</span>
+<span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">simple_land</span>)
+<span class="co">#&gt; [1] 104.8581</span></pre></body></html></div>
 <p>The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzmann entropy than the simple one.</p>
 <p>The <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land) <span class="co"># log10</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] 191.1567</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log"</span>)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [1] 440.1546</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">base =</span> <span class="st">"log2"</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [1] 635.0089</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>) <span class="co"># log10</span>
+<span class="co">#&gt; [1] 191.1567</span>
+<span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>, <span class="kw">base</span> <span class="kw">=</span> <span class="st">"log"</span>)
+<span class="co">#&gt; [1] 440.1546</span>
+<span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>, <span class="kw">base</span> <span class="kw">=</span> <span class="st">"log2"</span>)
+<span class="co">#&gt; [1] 635.0089</span></pre></body></html></div>
 <p>It also allows for calculation of the relative (the <code>relative</code> argument equal to <code>TRUE</code>) and absolute Boltzmann entropy of a landscape gradient.</p>
 </div>
 <div id="relative-boltzmann-entropy-of-a-landscape-gradient" class="section level1">
 <h1 class="hasAnchor">
 <a href="#relative-boltzmann-entropy-of-a-landscape-gradient" class="anchor"></a>Relative Boltzmann entropy of a landscape gradient</h1>
 <p>The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels. The relative configurational entropy is a sum of entropies for all windows of the original data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">relative =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] 88.55451</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>, <span class="kw">relative</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="co">#&gt; [1] 88.55451</span></pre></body></html></div>
 </div>
 <div id="absolute-boltzmann-entropy-of-a-landscape-gradient" class="section level1">
 <h1 class="hasAnchor">
@@ -123,26 +130,26 @@
 <p>It is possible to calculate an average value for each sliding window of 2 x 2 pixels and therefore create a resampled version of the original dataset:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-6-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
 <p>The absolute configurational entropy is a sum of relative configurational entropies for all levels, starting from the original data to the resampled dataset with at least two rows or columns.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(complex_land, <span class="dt">relative =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; [1] 191.1567</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">complex_land</span>, <span class="kw">relative</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="co">#&gt; [1] 191.1567</span></pre></body></html></div>
 </div>
 <div id="calculation-of-the-configurational-entropy-in-a-sliding-window" class="section level1">
 <h1 class="hasAnchor">
 <a href="#calculation-of-the-configurational-entropy-in-a-sliding-window" class="anchor"></a>Calculation of the configurational entropy in a sliding window</h1>
 <p>Determining the number of microstates belonging to a defined macrostate in a crucial concept for calculation of the configurational entropy. We explore this topic using five different cases of 2 x 2 windows:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">win_<span class="dv">1</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">win_<span class="dv">2</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">win_<span class="dv">3</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="ot">NA</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">win_<span class="dv">4</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">win_<span class="dv">5</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>), <span class="dt">ncol =</span> <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">win_1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="no">win_2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">NA</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="no">win_3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">NA</span>, <span class="fl">NA</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="no">win_4</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">NA</span>, <span class="fl">NA</span>, <span class="fl">NA</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>))
+<span class="no">win_5</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">NA</span>, <span class="fl">NA</span>, <span class="fl">NA</span>, <span class="fl">NA</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>))</pre></body></html></div>
 <div id="data-without-missing-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-without-missing-values" class="anchor"></a>Data without missing values</h2>
 <p>The configurational entropy for data without missing values is calculated using the analytical method by Gao et al. (2018).</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>Twenty-four different microstate are possible in the above case. The common (base 10) logarithm of 24 is equal to 1.380211. We can compare this result to the <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> output:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; [1] 1.380211</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">win_1</span>)
+<span class="co">#&gt; [1] 1.380211</span></pre></body></html></div>
 <p>The generalized (resampled) version of this window has one value, <code>3</code>, which is a rounded average of the four original values.</p>
 </div>
 <div id="data-with-missing-values" class="section level2">
@@ -153,23 +160,23 @@
 <p>For example, three microstates are possible for the above case:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-12-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-12-2.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-12-3.png" width="700"></p>
 <p>The common (base 10) logarithm of 3 is equal to 0.477121.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] 0.4771213</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">win_2</span>)
+<span class="co">#&gt; [1] 0.4771213</span></pre></body></html></div>
 <p>The generalized (resampled) version of this window is 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-14-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-14-2.png" width="700"></p>
 <p>The third window has two combinations. The common logarithm of 2 is equal to 0.30103.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; [1] 0.30103</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">win_3</span>)
+<span class="co">#&gt; [1] 0.30103</span></pre></body></html></div>
 <p>The generalized (resampled) version of this window is also 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <p>The fourth window has only one microstate, therefore its common logarithm equals to 0.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">win_4</span>)
+<span class="co">#&gt; [1] 0</span></pre></body></html></div>
 <p>The generalized (resampled) version of this window is the same as only existing value - 1.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <p>Finally, the last window consists of four missing values. In these cases, the configurational entropy is zero.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(win_<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">win_5</span>)
+<span class="co">#&gt; [1] 0</span></pre></body></html></div>
 <p>Importantly, the generalized version of this window is represented by NA.</p>
 </div>
 <div id="references" class="section level2">
@@ -183,25 +190,11 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#basic-example">Basic example</a></li>
-      <li><a href="#relative-boltzmann-entropy-of-a-landscape-gradient">Relative Boltzmann entropy of a landscape gradient</a></li>
-      <li><a href="#absolute-boltzmann-entropy-of-a-landscape-gradient">Absolute Boltzmann entropy of a landscape gradient</a></li>
-      <li>
-<a href="#calculation-of-the-configurational-entropy-in-a-sliding-window">Calculation of the configurational entropy in a sliding window</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#data-without-missing-values">Data without missing values</a></li>
-      <li><a href="#data-with-missing-values">Data with missing values</a></li>
-      <li><a href="#references">References</a></li>
-      </ul>
-</li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -212,7 +205,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
