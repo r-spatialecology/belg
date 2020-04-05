@@ -32,10 +32,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// not_na_prop
+double not_na_prop(const IntegerMatrix& x);
+RcppExport SEXP _belg_not_na_prop(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(not_na_prop(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_belg_get_boltzmann_default", (DL_FUNC) &_belg_get_boltzmann_default, 3},
     {"_belg_get_boltzmann_aggregation", (DL_FUNC) &_belg_get_boltzmann_aggregation, 3},
+    {"_belg_not_na_prop", (DL_FUNC) &_belg_not_na_prop, 1},
     {NULL, NULL, 0}
 };
 
