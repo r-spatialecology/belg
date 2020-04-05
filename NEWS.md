@@ -1,3 +1,7 @@
+# belg 1.0.3
+
+* Adds support for stars objects
+
 # belg 1.0.2
 
 * Moves raster to Imports

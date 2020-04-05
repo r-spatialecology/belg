@@ -79,9 +79,9 @@ get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hi
 #' @export
 get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("Package sp required, please install it first")
+    stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("Package raster required, please install it first")
+    stop("Package raster required, please install it first", call. = FALSE)
   get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method)
 }
 
@@ -89,9 +89,9 @@ get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method
 #' @export
 get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("Package sp required, please install it first")
+    stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("Package raster required, please install it first")
+    stop("Package raster required, please install it first", call. = FALSE)
   get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
 }
 
@@ -99,8 +99,19 @@ get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method
 #' @export
 get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
   if (!requireNamespace("sp", quietly = TRUE))
-    stop("Package sp required, please install it first")
+    stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
-    stop("Package raster required, please install it first")
+    stop("Package raster required, please install it first", call. = FALSE)
   get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
+}
+
+#' @name get_boltzmann
+#' @export
+get_boltzmann.stars = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+  if (!requireNamespace("stars", quietly = TRUE))
+    stop("Package stars required, please install it first", call. = FALSE)
+  if (length(x) > 1){
+    warning("The input stars object has more than one attribute. \nBoltzmann entropy is calculated for the first attribute in the stars object only", call. = FALSE)
+  }
+  get_boltzmann(x[[1]], base = base, relative = relative, method = method)
 }

@@ -8,6 +8,7 @@
 \alias{get_boltzmann.RasterLayer}
 \alias{get_boltzmann.RasterStack}
 \alias{get_boltzmann.RasterBrick}
+\alias{get_boltzmann.stars}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
 get_boltzmann(x, base = "log10", relative = FALSE, method = "hierarchy")
@@ -23,6 +24,8 @@ get_boltzmann(x, base = "log10", relative = FALSE, method = "hierarchy")
 \method{get_boltzmann}{RasterStack}(x, base = "log10", relative = FALSE, method = "hierarchy")
 
 \method{get_boltzmann}{RasterBrick}(x, base = "log10", relative = FALSE, method = "hierarchy")
+
+\method{get_boltzmann}{stars}(x, base = "log10", relative = FALSE, method = "hierarchy")
 }
 \arguments{
 \item{x}{RasterLayer, RasterStack, RasterBrick, matrix, or array}
