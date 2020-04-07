@@ -16,7 +16,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{default}(
@@ -24,7 +25,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{matrix}(
@@ -32,7 +34,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{array}(
@@ -40,7 +43,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{RasterLayer}(
@@ -48,7 +52,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{RasterStack}(
@@ -56,7 +61,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{RasterBrick}(
@@ -64,7 +70,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 
 \method{get_boltzmann}{stars}(
@@ -72,7 +79,8 @@ get_boltzmann(
   base = "log10",
   relative = FALSE,
   method = "hierarchy",
-  scale = FALSE
+  scale = FALSE,
+  resolution
 )
 }
 \arguments{
@@ -87,6 +95,8 @@ the hierarchy-based method (Gao et al., 2017) or "aggregation"
 for the aggregation-based method (Gao et al., 2019)}
 
 \item{scale}{TRUE/FALSE}
+
+\item{resolution}{Resolution}
 }
 \value{
 a numeric vector
