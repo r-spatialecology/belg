@@ -57,9 +57,9 @@ get_boltzmann.default = function(x, base = "log10", relative = FALSE, method = "
   }
   if (scale){
     if (!missing(resolution)){
-      result = (result / ((ncol(x) * nrow(x)))) / (not_na_prop(x) * resolution)
-      } else {
-      result = result / ((ncol(x) * nrow(x)) * not_na_prop(x))
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution) #* 1000000
+    } else {
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x))
     }
   }
   return(result)
@@ -75,9 +75,9 @@ get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "h
   }
   if (scale){
     if (!missing(resolution)){
-      result = (result / ((ncol(x) * nrow(x)))) / (not_na_prop(x) * resolution)
-      } else {
-      result = result / ((ncol(x) * nrow(x)) * not_na_prop(x))
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution) #* 1000000
+    } else {
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x))
     }
   }
   return(result)
@@ -93,9 +93,9 @@ get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hi
   }
   if (scale){
     if (!missing(resolution)){
-      result = (result / ((ncol(x) * nrow(x)))) / (not_na_prop(x) * resolution)
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution) #* 1000000
     } else {
-      result = result / ((ncol(x) * nrow(x)) * not_na_prop(x))
+      result = (result) / (ncol(x) * nrow(x) * not_na_prop(x))
     }
   }
   return(result)
