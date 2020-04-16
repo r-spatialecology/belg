@@ -15,7 +15,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -33,7 +33,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -42,7 +42,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -51,7 +51,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -60,7 +60,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -69,7 +69,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -78,7 +78,7 @@ get_boltzmann(
   x,
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
+  method = "aggregation",
   scale = "none",
   resolution
 )
@@ -90,8 +90,8 @@ get_boltzmann(
 
 \item{relative}{TRUE/FALSE}
 
-\item{method}{A method used. Either "hierarchy" (default) for
-the hierarchy-based method (Gao et al., 2017) or "aggregation"
+\item{method}{A method used. Either "hierarchy" for
+the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 for the aggregation-based method (Gao et al., 2019)}
 
 \item{scale}{A scaling method used.
@@ -121,9 +121,9 @@ new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
 
 
 lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
-get_boltzmann(lg, relative = FALSE, base = "log10")
-get_boltzmann(lg, relative = TRUE, base = "log2")
-get_boltzmann(lg, relative = TRUE, base = "log")
+get_boltzmann(lg, relative = FALSE, method = "hierarchy", base = "log10")
+get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log2")
+get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log")
 
 }
 \references{

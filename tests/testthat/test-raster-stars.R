@@ -6,14 +6,14 @@ stack_land = stack(simple_land, complex_land)
 brick_land = brick(simple_land, complex_land)
 
 # raster
-simple_output = get_boltzmann(simple_land, relative = FALSE)
-stack_output = get_boltzmann(stack_land, relative = FALSE, base = "log2")
-brick_output = get_boltzmann(brick_land, relative = FALSE, base = "log2")
+simple_output = get_boltzmann(simple_land, relative = FALSE, method = "hierarchy")
+stack_output = get_boltzmann(stack_land, relative = FALSE, method = "hierarchy", base = "log2")
+brick_output = get_boltzmann(brick_land, relative = FALSE, method = "hierarchy", base = "log2")
 
 # stars
-stars_output1 = get_boltzmann(st_as_stars(simple_land), relative = FALSE)
-stars_output2 = get_boltzmann(st_as_stars(stack_land), relative = FALSE, base = "log2")
-stars_output3 = get_boltzmann(st_as_stars(brick_land), relative = FALSE, base = "log2")
+stars_output1 = get_boltzmann(st_as_stars(simple_land), relative = FALSE, method = "hierarchy")
+stars_output2 = get_boltzmann(st_as_stars(stack_land), relative = FALSE, method = "hierarchy", base = "log2")
+stars_output3 = get_boltzmann(st_as_stars(brick_land), relative = FALSE, method = "hierarchy", base = "log2")
 
 test_that("entropy calc on a RasterLayer is correct", {
 
@@ -53,6 +53,7 @@ test_that("entropy calc on stars objects are correct", {
   # warnings
   expect_warning(get_boltzmann(c(st_as_stars(simple_land),
                                  st_as_stars(simple_land)),
-                                 relative = FALSE))
+                                 relative = FALSE,
+                               method = "hierarchy"))
 
 })

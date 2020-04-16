@@ -5,8 +5,8 @@
 #' @param x stars, RasterLayer, RasterStack, RasterBrick, matrix, or array
 #' @param base A logarithm base ("log", "log2" or "log10")
 #' @param relative TRUE/FALSE
-#' @param method A method used. Either "hierarchy" (default) for
-#' the hierarchy-based method (Gao et al., 2017) or "aggregation"
+#' @param method A method used. Either "hierarchy" for
+#' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 #' for the aggregation-based method (Gao et al., 2019)
 #' @param scale A scaling method used.
 #' Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".
@@ -42,13 +42,13 @@
 #'
 #'
 #' lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
-#' get_boltzmann(lg, relative = FALSE, base = "log10")
-#' get_boltzmann(lg, relative = TRUE, base = "log2")
-#' get_boltzmann(lg, relative = TRUE, base = "log")
+#' get_boltzmann(lg, relative = FALSE, method = "hierarchy", base = "log10")
+#' get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log2")
+#' get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log")
 #'
 #' @name get_boltzmann
 #' @export
-get_boltzmann = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution) UseMethod("get_boltzmann")
+get_boltzmann = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution) UseMethod("get_boltzmann")
 
 #' @name get_boltzmann
 #' @export
@@ -81,7 +81,7 @@ get_boltzmann.default = function(x, base = "log10", relative = FALSE, method = "
 
 ##' @name get_boltzmann
 ##' @export
-get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (method == "hierarchy"){
     result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
@@ -110,7 +110,7 @@ get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "h
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (method == "hierarchy"){
     result = apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
   } else if (method == "aggregation"){
@@ -139,7 +139,7 @@ get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hi
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -153,7 +153,7 @@ get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -167,7 +167,7 @@ get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -181,7 +181,7 @@ get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.stars = function(x, base = "log10", relative = FALSE, method = "hierarchy", scale = "none", resolution){
+get_boltzmann.stars = function(x, base = "log10", relative = FALSE, method = "aggregation", scale = "none", resolution){
   if (!requireNamespace("stars", quietly = TRUE))
     stop("Package stars required, please install it first", call. = FALSE)
   if (length(x) > 1){
