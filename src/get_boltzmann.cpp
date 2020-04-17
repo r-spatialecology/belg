@@ -21,7 +21,7 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
         arma::mat sub_x = x.submat(i, j, i + 1, j + 1);
         // conversion + search for NA values
         arma::vec sub_x_v = arma::conv_to<arma::vec>::from(sub_x.elem(find_finite(sub_x)));
-        int wu;
+        double wu;
         if ((sub_x_v.n_elem <= 4) && (sub_x_v.n_elem > 0)){
           if (sub_x_v.n_elem == 4){
             // if there are no NAs
@@ -45,11 +45,11 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
           }
           scaled(i, j) = round(arma::mean(sub_x_v));
           if (base == "log"){
-            result(i, j) = log(static_cast<double>(wu));
+            result(i, j) = log(wu);
           } else if (base == "log10"){
-            result(i, j) = log10(static_cast<double>(wu));
+            result(i, j) = log10(wu);
           } else if (base == "log2"){
-            result(i, j) = log2(static_cast<double>(wu));
+            result(i, j) = log2(wu);
           }
         } else{
           // if all values are NA
@@ -71,3 +71,35 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
   }
   return(res);
 }
+
+/*** R
+ua_pop2 = structure(c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+                      NA, NA, NA, 27741384, 34436488, 41257648, 41532492, 67418936,
+                      68382552, 60985116, 34680164, 8165829, 1549363, 855768, NA, 71125984,
+                      71708984, 50149648, 10528977, 10528977, 52469, 42169, NA, NA,
+                      NA, NA, NA, 40809992, 30339312, 22183144, 52469, 52469, 52469,
+                      47530, NA, NA, NA, NA, NA, 51383, 51997, 52207, 52417, 52469,
+                      52469, 47620, NA, NA, NA, NA, NA, 47035, 50108, 51158, 52207,
+                      52469, 52469, 47710, NA, NA, NA, NA, NA, 6204001, 48219, 50108,
+                      51997, 52469, 52469, 47800, NA, NA, NA, NA, NA, 44794, 49164,
+                      50633, 52102, 52469, 52469, 47890, NA, NA, NA, NA, NA, 393510,
+                      409565, 414617, 419668, 420930, 420930, 384911, NA, NA, NA, NA,
+                      NA, 419307, 420930, 420930, 420930, 420930, 420930, 385632, NA,
+                      NA, NA, NA, NA, 420029, 420930, 420930, 420930, 420930, 420930,
+                      386354, NA, NA, NA, NA, NA, 420750, 420930, 420930, 420930, 420930,
+                      420930, 387076, NA, NA, NA, NA, NA, 420930, 420930, 420930, 420930,
+                      420930, 420930, 387797, NA, NA, NA, NA, NA, 56451524, 420930,
+                      420930, 420930, 420930, 420930, 388519, NA, NA, NA, NA, NA, 547210304,
+                      89190600, 420930, 420930, 420930, 420930, 389240, 145822, NA,
+                      NA, NA, NA, 182684048, 420930, 420930, 420930, 420930, 420930,
+                      389962, 266088, NA, NA, NA, NA), .Dim = c(x = 12L, y = 27L))
+get_boltzmann_default(ua_pop2, base = "log10", relative = TRUE)
+*/
