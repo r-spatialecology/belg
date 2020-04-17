@@ -31,8 +31,6 @@ double wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
     } else {
       if (x_a == x_b) {
         wu = 12 + 24.L * (d - 1) + 12;
-        Rcout << "The value of wu : " << wu << "\n";
-
       } else {
         wu = 24 + 24.L * (d - 1) + 12;
       }
