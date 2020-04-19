@@ -2,12 +2,12 @@
 #'
 #' Calculates the Boltzmann entropy of a landscape gradient
 #'
-#' @param x stars, RasterLayer, RasterStack, RasterBrick, matrix, or array
-#' @param base A logarithm base ("log", "log2" or "log10")
-#' @param relative Should a relative or absolute entopy be calculated? TRUE or FALSE (default)
+#' @param x stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.
+#' @param base A logarithm base ("log", "log2" or "log10").
+#' @param relative Should a relative or absolute entopy be calculated? TRUE or FALSE (default).
 #' @param method A method used. Either "hierarchy" for
 #' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
-#' for the aggregation-based method (Gao et al., 2019)
+#' for the aggregation-based method (Gao et al., 2019).
 #' @param scale A scaling method used.
 #' Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".
 #' @param resolution Resolution of the input data.

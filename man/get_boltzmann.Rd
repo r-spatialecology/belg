@@ -84,18 +84,18 @@ get_boltzmann(
 )
 }
 \arguments{
-\item{x}{stars, RasterLayer, RasterStack, RasterBrick, matrix, or array}
+\item{x}{stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.}
 
 \item{method}{A method used. Either "hierarchy" for
 the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
-for the aggregation-based method (Gao et al., 2019)}
+for the aggregation-based method (Gao et al., 2019).}
 
 \item{scale}{A scaling method used.
 Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".}
 
-\item{base}{A logarithm base ("log", "log2" or "log10")}
+\item{base}{A logarithm base ("log", "log2" or "log10").}
 
-\item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default)}
+\item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default).}
 
 \item{resolution}{Resolution of the input data.
 A numeric vector of length 1 or 2.
