@@ -13,82 +13,78 @@
 \usage{
 get_boltzmann(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{default}(
   x,
+  method = "aggregation",
+  scale = "none",
   base = "log10",
   relative = FALSE,
-  method = "hierarchy",
-  scale = "none",
   resolution
 )
 
 \method{get_boltzmann}{matrix}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{array}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{RasterLayer}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{RasterStack}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{RasterBrick}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 
 \method{get_boltzmann}{stars}(
   x,
-  base = "log10",
-  relative = FALSE,
   method = "aggregation",
   scale = "none",
+  base = "log10",
+  relative = FALSE,
   resolution
 )
 }
 \arguments{
 \item{x}{stars, RasterLayer, RasterStack, RasterBrick, matrix, or array}
-
-\item{base}{A logarithm base ("log", "log2" or "log10")}
-
-\item{relative}{TRUE/FALSE}
 
 \item{method}{A method used. Either "hierarchy" for
 the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
@@ -96,6 +92,10 @@ for the aggregation-based method (Gao et al., 2019)}
 
 \item{scale}{A scaling method used.
 Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".}
+
+\item{base}{A logarithm base ("log", "log2" or "log10")}
+
+\item{relative}{TRUE/FALSE}
 
 \item{resolution}{Resolution of the input data.
 A numeric vector of length 1 or 2.
