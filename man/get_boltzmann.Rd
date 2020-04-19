@@ -95,7 +95,7 @@ Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".}
 
 \item{base}{A logarithm base ("log", "log2" or "log10")}
 
-\item{relative}{TRUE/FALSE}
+\item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default)}
 
 \item{resolution}{Resolution of the input data.
 A numeric vector of length 1 or 2.
