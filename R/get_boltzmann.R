@@ -152,7 +152,7 @@ get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = FALS
     resolution = c(raster::xres(x),
                    raster::yres(x))
   }
-  get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method, scale = scale, resolution = resolution)
+  get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method, na_adjust = na_adjust, scale = scale, resolution = resolution)
 }
 
 #' @name get_boltzmann
@@ -166,7 +166,7 @@ get_boltzmann.RasterStack = function(x, method = "aggregation", na_adjust = FALS
     resolution = c(raster::xres(x),
                    raster::yres(x))
   }
-  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, scale = scale, resolution = resolution)
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, na_adjust = na_adjust, scale = scale, resolution = resolution)
 }
 
 #' @name get_boltzmann
@@ -180,7 +180,7 @@ get_boltzmann.RasterBrick = function(x, method = "aggregation", na_adjust = FALS
     resolution = c(raster::xres(x),
                    raster::yres(x))
   }
-  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, scale = scale, resolution = resolution)
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, na_adjust = na_adjust, scale = scale, resolution = resolution)
 }
 
 #' @name get_boltzmann
@@ -195,5 +195,5 @@ get_boltzmann.stars = function(x, method = "aggregation", na_adjust = FALSE, sca
     resolution = c(abs(stars::st_dimensions(x)$x$delta),
                    abs(stars::st_dimensions(x)$y$delta))
   }
-  get_boltzmann(x[[1]], base = base, relative = relative, method = method, scale = scale, resolution = resolution)
+  get_boltzmann(x[[1]], base = base, relative = relative, method = method, na_adjust = na_adjust, scale = scale, resolution = resolution)
 }
