@@ -9,7 +9,8 @@
 #' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 #' for the aggregation-based method (Gao et al., 2019).
 #' @param scale A scaling method used.
-#' Either "none" (default), "na_values", "no_of_cells", "resolution", or "all".
+#' Either "none" (default), "no_of_cells", "resolution", or "all".
+#' @param na_adjust Either TRUE or FALSE
 #' @param resolution Resolution of the input data.
 #' A numeric vector of length 1 or 2.
 #' If missing, resolution is automaticaly calculated for the stars, RasterLayer, RasterStack, or RasterBrick objects.
@@ -48,11 +49,11 @@
 #'
 #' @name get_boltzmann
 #' @export
-get_boltzmann = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution) UseMethod("get_boltzmann")
+get_boltzmann = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution) UseMethod("get_boltzmann")
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.default = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.default = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (method == "hierarchy"){
     result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
@@ -67,21 +68,22 @@ get_boltzmann.default = function(x, method = "aggregation", scale = "none", base
   } else {
     resolution = 1
   }
-  if (scale == "na_values"){
-    result = (result) / (not_na_prop(x))
-  } else if (scale == "no_of_cells"){
+  if (scale == "no_of_cells"){
     result = (result) / (ncol(x) * nrow(x))
   } else if (scale == "resolution"){
     result = (result) / (resolution) #* 1000000
   } else if (scale == "all"){
-    result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution)
+    result = (result) / (ncol(x) * nrow(x) * resolution)
+  }
+  if (na_adjust){
+    result = (result) / (not_na_prop(x))
   }
   return(result)
 }
 
 ##' @name get_boltzmann
 ##' @export
-get_boltzmann.matrix = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.matrix = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (method == "hierarchy"){
     result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
@@ -96,21 +98,22 @@ get_boltzmann.matrix = function(x, method = "aggregation", scale = "none", base 
   } else {
     resolution = 1
   }
-  if (scale == "na_values"){
-    result = (result) / (not_na_prop(x))
-  } else if (scale == "no_of_cells"){
+  if (scale == "no_of_cells"){
     result = (result) / (ncol(x) * nrow(x))
   } else if (scale == "resolution"){
     result = (result) / (resolution) #* 1000000
   } else if (scale == "all"){
-    result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution)
+    result = (result) / (ncol(x) * nrow(x) * resolution)
+  }
+  if (na_adjust){
+    result = (result) / (not_na_prop(x))
   }
   return(result)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.array = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.array = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (method == "hierarchy"){
     result = apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
   } else if (method == "aggregation"){
@@ -125,21 +128,22 @@ get_boltzmann.array = function(x, method = "aggregation", scale = "none", base =
   } else {
     resolution = 1
   }
-  if (scale == "na_values"){
-    result = (result) / (not_na_prop(x))
-  } else if (scale == "no_of_cells"){
+  if (scale == "no_of_cells"){
     result = (result) / (ncol(x) * nrow(x))
   } else if (scale == "resolution"){
     result = (result) / (resolution) #* 1000000
   } else if (scale == "all"){
-    result = (result) / (ncol(x) * nrow(x) * not_na_prop(x) * resolution)
+    result = (result) / (ncol(x) * nrow(x) * resolution)
+  }
+  if (na_adjust){
+    result = (result) / (not_na_prop(x))
   }
   return(result)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterLayer = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -153,7 +157,7 @@ get_boltzmann.RasterLayer = function(x, method = "aggregation", scale = "none", 
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterStack = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.RasterStack = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -167,7 +171,7 @@ get_boltzmann.RasterStack = function(x, method = "aggregation", scale = "none", 
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterBrick = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.RasterBrick = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -181,7 +185,7 @@ get_boltzmann.RasterBrick = function(x, method = "aggregation", scale = "none", 
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.stars = function(x, method = "aggregation", scale = "none", base = "log10", relative = FALSE, resolution){
+get_boltzmann.stars = function(x, method = "aggregation", na_adjust = FALSE, scale = "none", base = "log10", relative = FALSE, resolution){
   if (!requireNamespace("stars", quietly = TRUE))
     stop("Package stars required, please install it first", call. = FALSE)
   if (length(x) > 1){
