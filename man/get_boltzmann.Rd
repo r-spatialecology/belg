@@ -15,80 +15,64 @@ get_boltzmann(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{default}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{matrix}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{array}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{RasterLayer}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{RasterStack}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{RasterBrick}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 
 \method{get_boltzmann}{stars}(
   x,
   method = "aggregation",
   na_adjust = FALSE,
-  scale = "none",
   base = "log10",
-  relative = FALSE,
-  resolution
+  relative = FALSE
 )
 }
 \arguments{
@@ -100,16 +84,9 @@ for the aggregation-based method (Gao et al., 2019).}
 
 \item{na_adjust}{Either TRUE or FALSE}
 
-\item{scale}{A scaling method used.
-Either "none" (default), "no_of_cells", "resolution", or "all".}
-
 \item{base}{A logarithm base ("log", "log2" or "log10").}
 
 \item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default).}
-
-\item{resolution}{Resolution of the input data.
-A numeric vector of length 1 or 2.
-If missing, resolution is automaticaly calculated for the stars, RasterLayer, RasterStack, or RasterBrick objects.}
 }
 \value{
 a numeric vector
