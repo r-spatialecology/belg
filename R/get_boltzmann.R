@@ -8,7 +8,7 @@
 #' @param method A method used. Either "hierarchy" for
 #' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 #' for the aggregation-based method (Gao et al., 2019).
-#' @param na_adjust Either TRUE or FALSE
+#' @param na_adjust Should the output value be adjusted to the proportion of not missing cells? Either TRUE or FALSE
 #'
 #' @return a numeric vector
 #'
