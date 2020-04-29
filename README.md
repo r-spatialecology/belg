@@ -8,7 +8,7 @@
 [![CRAN
 status](http://www.r-pkg.org/badges/version/belg)](https://cran.r-project.org/package=belg)
 [![R build
-status](https://github.com/r-spatialecology/belg/workflows/R-CMD-check/badge.svg)](https://github.com/r-spatialecology/belg/actions)
+status](https://github.com/r-spatialecology/belg/workflows/pkgdown-and-test-coverage/badge.svg)](https://github.com/r-spatialecology/belg/actions)
 [![codecov](https://codecov.io/gh/r-spatialecology/belg/branch/master/graph/badge.svg)](https://codecov.io/gh/r-spatialecology/belg)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/package=belg)
