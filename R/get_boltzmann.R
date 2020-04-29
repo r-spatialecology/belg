@@ -2,12 +2,13 @@
 #'
 #' Calculates the Boltzmann entropy of a landscape gradient
 #'
-#' @param x RasterLayer, RasterStack, RasterBrick, matrix, or array
-#' @param base A logarithm base ("log", "log2" or "log10")
-#' @param relative TRUE/FALSE
-#' @param method A method used. Either "hierarchy" (default) for
-#' the hierarchy-based method (Gao et al., 2017) or "aggregation"
-#' for the aggregation-based method (Gao et al., 2019)
+#' @param x stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.
+#' @param base A logarithm base ("log", "log2" or "log10").
+#' @param relative Should a relative or absolute entopy be calculated? TRUE or FALSE (default).
+#' @param method A method used. Either "hierarchy" for
+#' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
+#' for the aggregation-based method (Gao et al., 2019).
+#' @param na_adjust Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE
 #'
 #' @return a numeric vector
 #'
@@ -37,81 +38,157 @@
 #'
 #'
 #' lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
-#' get_boltzmann(lg, relative = FALSE, base = "log10")
-#' get_boltzmann(lg, relative = TRUE, base = "log2")
-#' get_boltzmann(lg, relative = TRUE, base = "log")
+#' get_boltzmann(lg, relative = FALSE, method = "hierarchy", base = "log10")
+#' get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log2")
+#' get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log")
 #'
 #' @name get_boltzmann
 #' @export
-get_boltzmann = function(x, base = "log10", relative = FALSE, method = "hierarchy") UseMethod("get_boltzmann")
+get_boltzmann = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE) UseMethod("get_boltzmann")
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.default = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.default = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
-    get_boltzmann_default(x, base, relative)
+    result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
-    get_boltzmann_aggregation(x, base, relative)
+    result = get_boltzmann_aggregation(x, base, relative)
   }
+  # if (!missing(resolution)){
+  #   if (length(resolution) == 1){
+  #     resolution = resolution^2
+  #   } else {
+  #     resolution = resolution[1] * resolution[2]
+  #   }
+  # } else {
+  #   resolution = 1
+  # }
+  # if (scale == "no_of_cells"){
+  #   result = (result) / (ncol(x) * nrow(x))
+  # } else if (scale == "resolution"){
+  #   result = (result) / (resolution) #* 1000000
+  # } else if (scale == "all"){
+  #   result = (result) / (ncol(x) * nrow(x) * resolution)
+  # }
+  if (na_adjust){
+    result = (result) / (not_na_prop(x))
+  }
+  return(result)
 }
 
 ##' @name get_boltzmann
 ##' @export
-get_boltzmann.matrix = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.matrix = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
-    get_boltzmann_default(x, base, relative)
+    result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
-    get_boltzmann_aggregation(x, base, relative)
+    result = get_boltzmann_aggregation(x, base, relative)
   }
+  # if (!missing(resolution)){
+  #   if (length(resolution) == 1){
+  #     resolution = resolution^2
+  #   } else {
+  #     resolution = resolution[1] * resolution[2]
+  #   }
+  # } else {
+  #   resolution = 1
+  # }
+  # if (scale == "no_of_cells"){
+  #   result = (result) / (ncol(x) * nrow(x))
+  # } else if (scale == "resolution"){
+  #   result = (result) / (resolution) #* 1000000
+  # } else if (scale == "all"){
+  #   result = (result) / (ncol(x) * nrow(x) * resolution)
+  # }
+  if (na_adjust){
+    result = (result) / (not_na_prop(x))
+  }
+  return(result)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.array = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.array = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
-    apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
+    result = apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
   } else if (method == "aggregation"){
-    apply(x, MARGIN = 3, get_boltzmann_aggregation, base, relative)
+    result = apply(x, MARGIN = 3, get_boltzmann_aggregation, base, relative)
   }
+  # if (!missing(resolution)){
+  #   if (length(resolution) == 1){
+  #     resolution = resolution^2
+  #   } else {
+  #     resolution = resolution[1] * resolution[2]
+  #   }
+  # } else {
+  #   resolution = 1
+  # }
+  # if (scale == "no_of_cells"){
+  #   result = (result) / (ncol(x) * nrow(x))
+  # } else if (scale == "resolution"){
+  #   result = (result) / (resolution) #* 1000000
+  # } else if (scale == "all"){
+  #   result = (result) / (ncol(x) * nrow(x) * resolution)
+  # }
+  if (na_adjust){
+    result = (result) / apply(x, MARGIN = 3, not_na_prop)
+  }
+  return(result)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterLayer = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first", call. = FALSE)
-  get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method)
+  # if (missing(resolution)){
+  #   resolution = c(raster::xres(x),
+  #                  raster::yres(x))
+  # }
+  get_boltzmann(raster::as.matrix(x), base = base, relative = relative, method = method, na_adjust = na_adjust)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterStack = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.RasterStack = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first", call. = FALSE)
-  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
+  # if (missing(resolution)){
+  #   resolution = c(raster::xres(x),
+  #                  raster::yres(x))
+  # }
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, na_adjust = na_adjust)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterBrick = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.RasterBrick = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
     stop("Package raster required, please install it first", call. = FALSE)
-  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method)
+  # if (missing(resolution)){
+  #   resolution = c(raster::xres(x),
+  #                  raster::yres(x))
+  # }
+  get_boltzmann(raster::as.array(x), base = base, relative = relative, method = method, na_adjust = na_adjust)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.stars = function(x, base = "log10", relative = FALSE, method = "hierarchy"){
+get_boltzmann.stars = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("stars", quietly = TRUE))
     stop("Package stars required, please install it first", call. = FALSE)
   if (length(x) > 1){
     warning("The input stars object has more than one attribute. \nBoltzmann entropy is calculated for the first attribute in the stars object only", call. = FALSE)
   }
-  get_boltzmann(x[[1]], base = base, relative = relative, method = method)
+  # if (missing(resolution)){
+  #   resolution = c(abs(stars::st_dimensions(x)$x$delta),
+  #                  abs(stars::st_dimensions(x)$y$delta))
+  # }
+  get_boltzmann(x[[1]], base = base, relative = relative, method = method, na_adjust = na_adjust)
 }

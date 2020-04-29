@@ -11,32 +11,82 @@
 \alias{get_boltzmann.stars}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
-get_boltzmann(x, base = "log10", relative = FALSE, method = "hierarchy")
+get_boltzmann(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{default}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{default}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{matrix}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{matrix}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{array}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{array}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{RasterLayer}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{RasterLayer}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{RasterStack}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{RasterStack}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{RasterBrick}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{RasterBrick}(
+  x,
+  method = "aggregation",
+  na_adjust = FALSE,
+  base = "log10",
+  relative = FALSE
+)
 
-\method{get_boltzmann}{stars}(x, base = "log10", relative = FALSE, method = "hierarchy")
+\method{get_boltzmann}{stars}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
 }
 \arguments{
-\item{x}{RasterLayer, RasterStack, RasterBrick, matrix, or array}
+\item{x}{stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.}
 
-\item{base}{A logarithm base ("log", "log2" or "log10")}
+\item{method}{A method used. Either "hierarchy" for
+the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
+for the aggregation-based method (Gao et al., 2019).}
 
-\item{relative}{TRUE/FALSE}
+\item{na_adjust}{Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE}
 
-\item{method}{A method used. Either "hierarchy" (default) for
-the hierarchy-based method (Gao et al., 2017) or "aggregation"
-for the aggregation-based method (Gao et al., 2019)}
+\item{base}{A logarithm base ("log", "log2" or "log10").}
+
+\item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default).}
 }
 \value{
 a numeric vector
@@ -58,9 +108,9 @@ new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
 
 
 lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
-get_boltzmann(lg, relative = FALSE, base = "log10")
-get_boltzmann(lg, relative = TRUE, base = "log2")
-get_boltzmann(lg, relative = TRUE, base = "log")
+get_boltzmann(lg, relative = FALSE, method = "hierarchy", base = "log10")
+get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log2")
+get_boltzmann(lg, relative = TRUE, method = "hierarchy", base = "log")
 
 }
 \references{

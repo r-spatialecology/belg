@@ -37,8 +37,8 @@ install.packages("belg")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("r-spatialecology/belg")
+# install.packages("remotes")
+remotes::install_github("r-spatialecology/belg")
 ```
 
 ## Examples

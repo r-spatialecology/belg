@@ -33,8 +33,8 @@ install.packages("belg")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("r-spatialecology/belg")
+# install.packages("remotes")
+remotes::install_github("r-spatialecology/belg")
 ```
 
 ## Examples
@@ -55,9 +55,9 @@ Boltzmann entropy of a landscape gradient:
 
 ``` r
 get_boltzmann(land_gradient1)
-#> [1] 66785968
+#> [1] 188772.5
 get_boltzmann(land_gradient2)
-#> [1] 30134170
+#> [1] 121875.2
 ```
 
 This function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`,
@@ -69,11 +69,11 @@ available options for the `base` argument.
 
 ``` r
 get_boltzmann(land_gradient1, base = "log")
-#> [1] 153780374
+#> [1] 434664.7
 get_boltzmann(land_gradient1, relative = TRUE)
-#> [1] 548520.4
+#> [1] 137645.4
 get_boltzmann(land_gradient1, base = "log2", relative = TRUE)
-#> [1] 1822145
+#> [1] 457248.1
 ```
 
 Two methods of calculating the Boltzmann entropy of a landscape gradient

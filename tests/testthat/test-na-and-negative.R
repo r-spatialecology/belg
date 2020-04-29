@@ -36,17 +36,17 @@ ver_2b = matrix(c(-1, 0, 1, NA), ncol = 2)
 # tests
 test_that("entropy calc with NA gives lower values", {
 
-  gb1 = get_boltzmann(set_1, relative = FALSE, base = "log")
-  gb2 = get_boltzmann(set_2, relative = FALSE, base = "log")
+  gb1 = get_boltzmann(set_1, relative = FALSE, method = "hierarchy", base = "log")
+  gb2 = get_boltzmann(set_2, relative = FALSE, method = "hierarchy", base = "log")
   expect_true(gb1 > gb2)
 
 })
 
 test_that("entropy calc is correct on data with NA", {
 
-  gb_v3 = get_boltzmann(ver_3)
-  gb_v4 = get_boltzmann(ver_4)
-  gb_v5 = get_boltzmann(ver_5)
+  gb_v3 = get_boltzmann(ver_3, na_adjust = FALSE)
+  gb_v4 = get_boltzmann(ver_4, na_adjust = FALSE)
+  gb_v5 = get_boltzmann(ver_5, na_adjust = FALSE)
 
   expect_equal(gb_v3, 0.301, tolerance = 1e-3)
   expect_equal(gb_v4, 0, tolerance = 1e-3)

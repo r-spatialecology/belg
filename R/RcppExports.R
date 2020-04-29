@@ -9,3 +9,7 @@ get_boltzmann_aggregation <- function(x, base, relative) {
     .Call('_belg_get_boltzmann_aggregation', PACKAGE = 'belg', x, base, relative)
 }
 
+not_na_prop <- function(x) {
+    .Call('_belg_not_na_prop', PACKAGE = 'belg', x)
+}
+

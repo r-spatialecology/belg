@@ -62,8 +62,8 @@ gplot(simple_land) +
 The main function in this package, `get_boltzmann()`, calculates the Boltzmann entropy of a landscape gradient:
 
 ```{r}
-get_boltzmann(complex_land)
-get_boltzmann(simple_land)
+get_boltzmann(complex_land, method = "hierarchy")
+get_boltzmann(simple_land, method = "hierarchy")
 ```
 
 The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzmann entropy than the simple one.
@@ -72,9 +72,9 @@ The `get_boltzmann()` function accepts a `RasterLayer`, `RasterStack`, `RasterBr
 As a default, it uses a logarithm of base 10 (`log10`), however `log` and `log2` are also available options for the `base` argument.
 
 ```{r}
-get_boltzmann(complex_land) # log10
-get_boltzmann(complex_land, base = "log")
-get_boltzmann(complex_land, base = "log2")
+get_boltzmann(complex_land, method = "hierarchy") # log10
+get_boltzmann(complex_land, method = "hierarchy", base = "log")
+get_boltzmann(complex_land, method = "hierarchy", base = "log2")
 ```
 
 It also allows for calculation of the relative (the `relative` argument equal to `TRUE`) and absolute Boltzmann entropy of a landscape gradient.
@@ -85,7 +85,7 @@ The main idea behind the Boltzmann entropy of a landscape gradient is to calcula
 The relative configurational entropy is a sum of entropies for all windows of the original data.
 
 ```{r}
-get_boltzmann(complex_land, relative = TRUE)
+get_boltzmann(complex_land, method = "hierarchy", relative = TRUE)
 ```
 
 # Absolute Boltzmann entropy of a landscape gradient
@@ -120,7 +120,7 @@ gplot(complex_land_l2) +
 The absolute configurational entropy is a sum of relative configurational entropies for all levels, starting from the original data to the resampled dataset with at least two rows or columns.
 
 ```{r}
-get_boltzmann(complex_land, relative = FALSE)
+get_boltzmann(complex_land, method = "hierarchy", relative = FALSE)
 ```
 
 # Calculation of the configurational entropy in a sliding window 
@@ -154,7 +154,7 @@ The common (base 10) logarithm of 24 is equal to `r round(log10(24), 6)`.
 We can compare this result to the `get_boltzmann()` output:
 
 ```{r}
-get_boltzmann(win_1)
+get_boltzmann(win_1, method = "hierarchy")
 ```
 
 The generalized (resampled) version of this window has one value, `3`, which is a rounded average of the four original values.
@@ -200,7 +200,7 @@ gplot(win_2_3) +
 The common (base 10) logarithm of 3 is equal to `r round(log10(3), 6)`.
 
 ```{r}
-get_boltzmann(win_2)
+get_boltzmann(win_2, method = "hierarchy")
 ```
 
 The generalized (resampled) version of this window is 2.
@@ -224,7 +224,7 @@ The third window has two combinations.
 The common logarithm of 2 is equal to `r round(log10(2), 6)`.
 
 ```{r}
-get_boltzmann(win_3)
+get_boltzmann(win_3, method = "hierarchy")
 ```
 
 The generalized (resampled) version of this window is also 2.
@@ -240,7 +240,7 @@ gplot(win_4) +
 The fourth window has only one microstate, therefore its common logarithm equals to `r round(log10(1), 6)`.
 
 ```{r}
-get_boltzmann(win_4)
+get_boltzmann(win_4, method = "hierarchy")
 ```
 
 The generalized (resampled) version of this window is the same as only existing value - 1.
@@ -256,7 +256,7 @@ Finally, the last window consists of four missing values.
 In these cases, the configurational entropy is zero.
 
 ```{r}
-get_boltzmann(win_5)
+get_boltzmann(win_5, method = "hierarchy")
 ```
 
 Importantly, the generalized version of this window is represented by NA.

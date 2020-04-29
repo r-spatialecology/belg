@@ -4,9 +4,8 @@
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-
-int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
-  int wu = 0;
+double wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
+  double wu = 0.0;
 
   if (d == 0) {
     if (d_a == d_b) {
@@ -25,15 +24,15 @@ int wu_calc(int d, int d_a, int d_b, int x_a, int x_b){
   } else {
     if (d_a == d_b) {
       if (x_a == x_b) {
-        wu = 12 + 24 * (d - 1) + 6;
+        wu = 12 + 24.L * (d - 1) + 6;
       } else {
-        wu = 24 + 24 * (d - 1) + 6;
+        wu = 24 + 24.L * (d - 1) + 6;
       }
     } else {
       if (x_a == x_b) {
-        wu = 12 + 24 * (d - 1) + 12;
+        wu = 12 + 24.L * (d - 1) + 12;
       } else {
-        wu = 24 + 24 * (d - 1) + 12;
+        wu = 24 + 24.L * (d - 1) + 12;
       }
     }
   }
@@ -61,6 +60,13 @@ int is_power_of_two(unsigned int x){
 }
 
 /*** R
+d = 135516394
+d_a = 135516394
+d_b = 411272980
+x_a = 135937324
+x_b = 135937324
+wu_calc(d, d_a, d_b, x_a, x_b)
+
 is_power_of_two(2)
 is_power_of_two(4)
 is_power_of_two(8)

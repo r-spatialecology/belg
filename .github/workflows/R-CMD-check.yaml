@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages("remotes")
-          remotes::install_github("r-spatial/sf", configure.args = "--with-gdal-config=/usr/local/bin/gdal-config --with-geos-config=/usr/local/bin/geos-config --with-proj-include=/usr/local/include/ --with-proj-lib=/usr/local/lib/")
+          install.packages("sf", configure.args = "--with-proj-lib=/usr/local/lib/")
           remotes::install_deps(dependencies = TRUE)
           # remotes::install_dev("pkgdown")
           remotes::install_github("r-lib/pkgdown#1276")
@@ -54,5 +54,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Deploy package
-        run: pkgdown::deploy_to_branch(new_process = FALSE)
-        shell: Rscript {0}
+        run: |
+          git config --global user.name ${{secrets.GH_USER}}
+          git config --global user.email ${{secrets.GH_EMAIL}}
+          Rscript -e "pkgdown::deploy_to_branch(new_process = FALSE)"
