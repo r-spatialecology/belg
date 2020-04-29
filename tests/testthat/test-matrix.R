@@ -117,7 +117,7 @@ test_that("absolute entropy calc is correct on matrix", {
 test_that("relative entropy calc is correct on array", {
 
   # calculations are correct #3
-  case_outputs = get_boltzmann(case_array, relative = TRUE)
+  case_outputs = get_boltzmann(case_array, relative = TRUE, method = "hierarchy")
   expect_equal(case_results, case_outputs, tolerance = 1e-3)
 
   # bad inputs
