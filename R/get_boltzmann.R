@@ -8,7 +8,7 @@
 #' @param method A method used. Either "hierarchy" for
 #' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 #' for the aggregation-based method (Gao et al., 2019).
-#' @param na_adjust Should the output value be adjusted to the proportion of not missing cells? Either TRUE or FALSE
+#' @param na_adjust Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE
 #'
 #' @return a numeric vector
 #'
@@ -44,11 +44,11 @@
 #'
 #' @name get_boltzmann
 #' @export
-get_boltzmann = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE) UseMethod("get_boltzmann")
+get_boltzmann = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE) UseMethod("get_boltzmann")
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.default = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.default = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
     result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
@@ -78,7 +78,7 @@ get_boltzmann.default = function(x, method = "aggregation", na_adjust = FALSE, b
 
 ##' @name get_boltzmann
 ##' @export
-get_boltzmann.matrix = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.matrix = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
     result = get_boltzmann_default(x, base, relative)
   } else if (method == "aggregation"){
@@ -108,7 +108,7 @@ get_boltzmann.matrix = function(x, method = "aggregation", na_adjust = FALSE, ba
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.array = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.array = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (method == "hierarchy"){
     result = apply(x, MARGIN = 3, get_boltzmann_default, base, relative)
   } else if (method == "aggregation"){
@@ -131,14 +131,14 @@ get_boltzmann.array = function(x, method = "aggregation", na_adjust = FALSE, bas
   #   result = (result) / (ncol(x) * nrow(x) * resolution)
   # }
   if (na_adjust){
-    result = (result) / (not_na_prop(x))
+    result = (result) / apply(x, MARGIN = 3, not_na_prop)
   }
   return(result)
 }
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -152,7 +152,7 @@ get_boltzmann.RasterLayer = function(x, method = "aggregation", na_adjust = FALS
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.RasterStack = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.RasterStack = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("sp", quietly = TRUE))
     stop("Package sp required, please install it first", call. = FALSE)
   if (!requireNamespace("raster", quietly = TRUE))
@@ -180,7 +180,7 @@ get_boltzmann.RasterBrick = function(x, method = "aggregation", na_adjust = FALS
 
 #' @name get_boltzmann
 #' @export
-get_boltzmann.stars = function(x, method = "aggregation", na_adjust = FALSE, base = "log10", relative = FALSE){
+get_boltzmann.stars = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
   if (!requireNamespace("stars", quietly = TRUE))
     stop("Package stars required, please install it first", call. = FALSE)
   if (length(x) > 1){

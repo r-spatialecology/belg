@@ -14,7 +14,7 @@
 get_boltzmann(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -22,7 +22,7 @@ get_boltzmann(
 \method{get_boltzmann}{default}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -30,7 +30,7 @@ get_boltzmann(
 \method{get_boltzmann}{matrix}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -38,7 +38,7 @@ get_boltzmann(
 \method{get_boltzmann}{array}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -46,7 +46,7 @@ get_boltzmann(
 \method{get_boltzmann}{RasterLayer}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -54,7 +54,7 @@ get_boltzmann(
 \method{get_boltzmann}{RasterStack}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -70,7 +70,7 @@ get_boltzmann(
 \method{get_boltzmann}{stars}(
   x,
   method = "aggregation",
-  na_adjust = FALSE,
+  na_adjust = TRUE,
   base = "log10",
   relative = FALSE
 )
@@ -82,7 +82,7 @@ get_boltzmann(
 the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 for the aggregation-based method (Gao et al., 2019).}
 
-\item{na_adjust}{Should the output value be adjusted to the proportion of not missing cells? Either TRUE or FALSE}
+\item{na_adjust}{Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE}
 
 \item{base}{A logarithm base ("log", "log2" or "log10").}
 
