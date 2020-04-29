@@ -135,7 +135,7 @@
     <pre class="usage"><span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -144,7 +144,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -153,7 +153,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -162,7 +162,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -171,7 +171,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -180,7 +180,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -198,7 +198,7 @@
 <span class='fu'>get_boltzmann</span>(
   <span class='no'>x</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
-  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
@@ -218,7 +218,7 @@ for the aggregation-based method (Gao et al., 2019).</p></td>
     </tr>
     <tr>
       <th>na_adjust</th>
-      <td><p>Either TRUE or FALSE</p></td>
+      <td><p>Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE</p></td>
     </tr>
     <tr>
       <th>base</th>
