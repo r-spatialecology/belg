@@ -4,6 +4,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(openmp)]]
 
 // [[Rcpp::export]]
 double get_boltzmann_default(arma::mat x, std::string base, bool relative){
@@ -15,6 +16,10 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
     int num_c = x.n_cols - 1;
     arma::mat scaled(num_r, num_c);
     arma::mat result(num_r, num_c);
+
+    #if defined (_OPENMP)
+      #pragma omp parallel for
+    #endif
 
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {

@@ -1,6 +1,6 @@
 Package: belg
 Title: Boltzmann Entropy of a Landscape Gradient
-Version: 1.4.0
+Version: 1.5.0
 Description: Calculates the Boltzmann entropy of a landscape gradient.
     This package uses the analytical method created by Gao, P., Zhang, H.
     and Li, Z., 2018 (<doi:10.1111/tgis.12315>) and by Gao, P. and Li, Z., 2019
