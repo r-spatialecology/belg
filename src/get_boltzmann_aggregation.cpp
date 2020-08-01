@@ -24,12 +24,19 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
     arma::mat scaled(new_num_r, new_num_c);
     arma::mat result(new_num_r, new_num_c);
 
-    int ii = 0;
+    int ii;
+    // int ii = 0;
 
-    #if defined (_OPENMP)
-      #pragma omp parallel for
-    #endif
+    // #if defined (_OPENMP)
+    //   #pragma omp parallel for
+    // #endif
+
     for (int i = 0; i < x.n_rows; i = i + 2) {
+      if (i == 0){
+        ii = 0;
+      } else {
+        ii = i / 2;
+      }
       int jj = 0;
       for (int j = 0; j < x.n_cols; j = j + 2) {
         arma::mat sub_x = x.submat(i, j, i + 1, j + 1);
@@ -74,7 +81,6 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
         }
         jj++;
       }
-      ii++;
     }
     for (int ro = 0; ro < new_num_r; ro++) {
       for (int co = 0; co < new_num_c; co++) {
@@ -99,10 +105,18 @@ lg = matrix(new_c, nrow = 4, ncol = 8, byrow = TRUE)
 
 lg = matrix(c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4)), ncol = 4, nrow = 4)
 
-new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
-          15, 55, 85, 69, 12, 52, 25, 56,
-          32, 25, 68, 98, 58, 66, 56, 58)
-lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
+# new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
+#           15, 55, 85, 69, 12, 52, 25, 56,
+#           32, 25, 68, 98, 58, 66, 56, 58)
+# lg = matrix(new_c, nrow = 3, ncol = 8, byrow = TRUE)
 
 get_boltzmann_aggregation(lg, base = "log10", relative = FALSE)
+
+new_c = c(56, 86, 98, 50, 45, 56, 96, 25,
+          15, 55, 85, 69, 12, 52, 25, 56,
+          32, 25, 68, 98, 58, 66, 56, 58,
+          15, 55, 85, 69, 12, 52, 25, 56)
+m = matrix(new_c, ncol = 8)
+get_boltzmann_aggregation(lg, base = "log10", relative = TRUE)
 */
+
