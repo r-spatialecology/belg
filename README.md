@@ -16,10 +16,11 @@ downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/pa
 <!-- badges: end -->
 
 Boltzmann entropy (also called configurational entropy) has been
-recently adopted to analyze entropy of landscape gradients (Gao et al.
-(2017, 2018, 2019)). The goal of **belg** is to provide an efficient C++
-implementation of this method in R. It also extend the original idea by
-allowing calculations on data with missing values.
+recently adopted to analyze entropy of landscape gradients (Gao et
+al. (2017, 2018, 2019)). The goal of **belg** is to provide an
+efficient C++ implementation of this method in R. It also extend the
+original idea by allowing calculations on data with missing values
+(Nowosad and Gao (2020)).
 
 ## Installation
 
@@ -89,6 +90,8 @@ get_boltzmann(land_gradient1, relative = TRUE, method = "aggregation")
 #> [1] 137645.4
 ```
 
+More examples can be find at <https://github.com/Nowosad/belg-examples>.
+
 ## References
 
   - Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution
@@ -100,3 +103,6 @@ get_boltzmann(land_gradient1, relative = TRUE, method = "aggregation")
   - Gao, Peichao and Zhilin Li. “Aggregation-based method for computing
     absolute Boltzmann entropy of landscape gradient with full
     thermodynamic consistency.” Landscape Ecology (2019).
+  - Nowosad, J.; Gao, P. belg: A Tool for Calculating Boltzmann Entropy
+    of Landscape Gradients. Entropy 2020, 22, 937.
+    <https://doi.org/10.3390/e22090937>
