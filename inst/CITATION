@@ -1,11 +1,14 @@
 citHeader("To cite belg in publications, please use:")
 
-citEntry(entry = "Manual",
-    title = "belg: Boltzmann Entropy of a Landscape Gradient",
-    author = c(person("Jakub", "Nowosad")),
-    year = "2019",
-    note = "R package version 1.0.0",
-    url = "https://CRAN.R-project.org/package=belg",
-    textVersion = "Nowosad, Jakub (2019). belg: Boltzmann Entropy of a Landscape Gradient. R package version 1.0.0.
-  https://CRAN.R-project.org/package=belg"
+citEntry(entry = "Article",
+    title = "belg: A Tool for Calculating Boltzmann Entropy of Landscape Gradients",
+    author = c(person("Jakub", "Nowosad"), person("Peichao", "Gao")),
+    journal = {"Entropy"},
+    year = "2020",
+    number = {"9"},
+    pages = {"937"},
+    volume = {"22"},
+    doi = {"10.3390/e22090937"},
+    url = "https://github.com/nowosad/belg",
+    textVersion = " Nowosad, J.; Gao, P. belg: A Tool for Calculating Boltzmann Entropy of Landscape Gradients. Entropy 2020, 22, 937. https://doi.org/10.3390/e22090937"
 )
