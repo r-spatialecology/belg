@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -132,46 +132,101 @@
     <p>Calculates the Boltzmann entropy of a landscape gradient</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+    <pre class="usage"><span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for matrix</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for array</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for RasterLayer</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for RasterStack</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for RasterBrick</span>
-<span class='fu'>get_boltzmann</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>)</pre>
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+
+<span class='co'># S3 method for stars</span>
+<span class='fu'>get_boltzmann</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"aggregation"</span>,
+  <span class='kw'>na_adjust</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>,
+  <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>RasterLayer, RasterStack, RasterBrick, matrix, or array</p></td>
-    </tr>
-    <tr>
-      <th>base</th>
-      <td><p>A logarithm base ("log", "log2" or "log10")</p></td>
-    </tr>
-    <tr>
-      <th>relative</th>
-      <td><p>TRUE/FALSE</p></td>
+      <td><p>stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>A method used. Either "hierarchy" (default) for
-the hierarchy-based method (Gao et al., 2017) or "aggregation"
-for the aggregation-based method (Gao et al., 2019)</p></td>
+      <td><p>A method used. Either "hierarchy" for
+the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
+for the aggregation-based method (Gao et al., 2019).</p></td>
+    </tr>
+    <tr>
+      <th>na_adjust</th>
+      <td><p>Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE</p></td>
+    </tr>
+    <tr>
+      <th>base</th>
+      <td><p>A logarithm base ("log", "log2" or "log10").</p></td>
+    </tr>
+    <tr>
+      <th>relative</th>
+      <td><p>Should a relative or absolute entopy be calculated? TRUE or FALSE (default).</p></td>
     </tr>
     </table>
 
@@ -205,7 +260,7 @@ Landscape Ecology (2019)</p>
 
 
 <span class='no'>lg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='no'>new_c</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>byrow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; [1] 48.43241</div><div class='input'><span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</div><div class='output co'>#&gt; [1] 117.934</div><div class='input'><span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; [1] 81.74565</div><div class='input'>
+<span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; [1] 48.43241</div><div class='input'><span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</div><div class='output co'>#&gt; [1] 117.934</div><div class='input'><span class='fu'>get_boltzmann</span>(<span class='no'>lg</span>, <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"hierarchy"</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; [1] 81.74565</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -222,7 +277,7 @@ Landscape Ecology (2019)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -88,6 +88,7 @@
 <div id="belg" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#belg" class="anchor"></a>belg</h1></div>
+<!-- badges: start -->
 
 <p>Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017, 2018, 2019)). The goal of <strong>belg</strong> is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with missing values.</p>
 <div id="installation" class="section level2">
@@ -96,8 +97,8 @@
 <p>You can install the released version of belg from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"belg"</span>)</pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"r-spatialecology/belg"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("remotes")</span>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"r-spatialecology/belg"</span>)</pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -109,16 +110,16 @@
 <p><img src="reference/figures/README-unnamed-chunk-1-1.png" width="100%"></p>
 <p>The main function in this package, <code><a href="reference/get_boltzmann.html">get_boltzmann()</a></code>, calculates the Boltzmann entropy of a landscape gradient:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>)
-<span class="co">#&gt; [1] 66785968</span>
+<span class="co">#&gt; [1] 188772.5</span>
 <span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient2</span>)
-<span class="co">#&gt; [1] 30134170</span></pre></div>
+<span class="co">#&gt; [1] 121875.2</span></pre></div>
 <p>This function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. It allows for calculation of the relative (the <code>relative</code> argument equal to <code>TRUE</code>) and absolute Boltzmann entropy of a landscape gradient. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>, <span class="kw">base</span> <span class="kw">=</span> <span class="st">"log"</span>)
-<span class="co">#&gt; [1] 153780374</span>
+<span class="co">#&gt; [1] 434664.7</span>
 <span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>, <span class="kw">relative</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; [1] 548520.4</span>
+<span class="co">#&gt; [1] 137645.4</span>
 <span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>, <span class="kw">base</span> <span class="kw">=</span> <span class="st">"log2"</span>, <span class="kw">relative</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; [1] 1822145</span></pre></div>
+<span class="co">#&gt; [1] 457248.1</span></pre></div>
 <p>Two methods of calculating the Boltzmann entropy of a landscape gradient are available: <code>"hierarchy"</code> (default) for the hierarchy-based method (Gao et al., 2017) or <code>"aggregation"</code> for the aggregation-based method (Gao et al., 2019). The aggregation-based method requires that the number of rows and columns in the input data must be a multiple of 2.</p>
 <div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"aggregation"</span>)
 <span class="co">#&gt; [1] 188772.5</span>
@@ -174,7 +175,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=belg"><img src="http://www.r-pkg.org/badges/version/belg" alt="CRAN status"></a></li>
-<li><a href="https://travis-ci.org/r-spatialecology/belg"><img src="https://travis-ci.org/r-spatialecology/belg.png?branch=master" alt="Build Status"></a></li>
+<li><a href="https://github.com/r-spatialecology/belg/actions"><img src="https://github.com/r-spatialecology/belg/workflows/pkgdown-and-test-coverage/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/r-spatialecology/belg"><img src="https://codecov.io/gh/r-spatialecology/belg/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=belg"><img src="http://cranlogs.r-pkg.org/badges/belg" alt="CRAN RStudio mirror downloads"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.1209419"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1209419.svg" alt="DOI"></a></li>
@@ -189,7 +190,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
