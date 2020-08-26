@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
 <a href="#belg" class="anchor"></a>belg</h1></div>
 <!-- badges: start -->
 
-<p>Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017, 2018, 2019)). The goal of <strong>belg</strong> is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with missing values.</p>
+<p>Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017, 2018, 2019)). The goal of <strong>belg</strong> is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with missing values (Nowosad and Gao (2020)).</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -125,6 +125,7 @@
 <span class="co">#&gt; [1] 188772.5</span>
 <span class="fu"><a href="reference/get_boltzmann.html">get_boltzmann</a></span>(<span class="no">land_gradient1</span>, <span class="kw">relative</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"aggregation"</span>)
 <span class="co">#&gt; [1] 137645.4</span></pre></div>
+<p>More examples can be find at <a href="https://github.com/Nowosad/belg-examples" class="uri">https://github.com/Nowosad/belg-examples</a>.</p>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -133,6 +134,8 @@
 <li>Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution to calculate the configurational entropy of landscape gradients.” Landscape Ecology 32(6) (2017): 1133-1146.</li>
 <li>Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical method for computing the Boltzmann entropy of a landscape gradient.” Transactions in GIS (2018).</li>
 <li>Gao, Peichao and Zhilin Li. “Aggregation-based method for computing absolute Boltzmann entropy of landscape gradient with full thermodynamic consistency.” Landscape Ecology (2019).</li>
+<li>Nowosad, J.; Gao, P. belg: A Tool for Calculating Boltzmann Entropy of Landscape Gradients. Entropy 2020, 22, 937. <a href="https://doi.org/10.3390/e22090937" class="uri">https://doi.org/10.3390/e22090937</a>
+</li>
 </ul>
 </div>
 </div>
