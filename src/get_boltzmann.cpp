@@ -1,12 +1,15 @@
 #include <RcppArmadillo.h>
 #include "utils.h"
+#include <omp.h>
 
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-
+// [[Rcpp::plugins(cpp11)]]
+// [[Rcpp::plugins(openmp)]]
 // [[Rcpp::export]]
-double get_boltzmann_default(arma::mat x, std::string base, bool relative){
+double get_boltzmann_default(arma::mat x, std::string base, bool relative,
+                             const int n_cores = 1){
   // float to int
   x = round(x);
   double res = 0;
@@ -16,6 +19,9 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative){
     arma::mat scaled(num_r, num_c);
     arma::mat result(num_r, num_c);
 
+    #if defined(_OPENMP)
+        #pragma omp parallel for num_threads(n_cores)
+    #endif
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
         arma::mat sub_x = x.submat(i, j, i + 1, j + 1);
