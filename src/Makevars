@@ -2,5 +2,7 @@ CXX=clang++
 
 CXX_STD = CXX11STD
 
-PKG_CXXFLAGS = -fopenmp
-PKG_LIBS = -fopenmp
+SHLIB_OPENMP_CFLAGS=-fopenmp
+SHLIB_OPENMP_CXXFLAGS=-fopenmp
+SHLIB_OPENMP_FCFLAGS=-fopenmp
+SHLIB_OPENMP_FFLAGS=-fopenmp

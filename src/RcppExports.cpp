@@ -7,16 +7,15 @@
 using namespace Rcpp;
 
 // get_boltzmann_default
-double get_boltzmann_default(arma::mat x, std::string base, bool relative, const int n_cores);
-RcppExport SEXP _belg_get_boltzmann_default(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP, SEXP n_coresSEXP) {
+double get_boltzmann_default(arma::mat x, std::string base, bool relative);
+RcppExport SEXP _belg_get_boltzmann_default(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
     Rcpp::traits::input_parameter< bool >::type relative(relativeSEXP);
-    Rcpp::traits::input_parameter< const int >::type n_cores(n_coresSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_boltzmann_default(x, base, relative, n_cores));
+    rcpp_result_gen = Rcpp::wrap(get_boltzmann_default(x, base, relative));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -46,7 +45,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_belg_get_boltzmann_default", (DL_FUNC) &_belg_get_boltzmann_default, 4},
+    {"_belg_get_boltzmann_default", (DL_FUNC) &_belg_get_boltzmann_default, 3},
     {"_belg_get_boltzmann_aggregation", (DL_FUNC) &_belg_get_boltzmann_aggregation, 3},
     {"_belg_not_na_prop", (DL_FUNC) &_belg_not_na_prop, 1},
     {NULL, NULL, 0}

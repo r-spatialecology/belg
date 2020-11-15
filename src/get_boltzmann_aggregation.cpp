@@ -1,10 +1,12 @@
 #include <RcppArmadillo.h>
 #include "utils.h"
+#include <omp.h>
 
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-
+// [[Rcpp::plugins(cpp11)]]
+// [[Rcpp::plugins(openmp)]]
 // https://link.springer.com/article/10.1007%2Fs10980-019-00854-3
 // [[Rcpp::export]]
 double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
@@ -24,6 +26,9 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
     arma::mat result(new_num_r, new_num_c);
 
     int ii = 0;
+    #if defined(_OPENMP)
+        #pragma omp parallel for
+    #endif
     for (int i = 0; i < x.n_rows; i = i + 2) {
       int jj = 0;
       for (int j = 0; j < x.n_cols; j = j + 2) {

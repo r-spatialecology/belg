@@ -8,8 +8,7 @@ using namespace Rcpp;
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::plugins(openmp)]]
 // [[Rcpp::export]]
-double get_boltzmann_default(arma::mat x, std::string base, bool relative,
-                             const int n_cores = 1){
+double get_boltzmann_default(arma::mat x, std::string base, bool relative){
   // float to int
   x = round(x);
   double res = 0;
@@ -20,7 +19,7 @@ double get_boltzmann_default(arma::mat x, std::string base, bool relative,
     arma::mat result(num_r, num_c);
 
     #if defined(_OPENMP)
-        #pragma omp parallel for num_threads(n_cores)
+        #pragma omp parallel for
     #endif
     for (int i = 0; i < num_r; i++) {
       for (int j = 0; j < num_c; j++) {
