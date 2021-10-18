@@ -1,6 +1,6 @@
 Package: belg
 Title: Boltzmann Entropy of a Landscape Gradient
-Version: 1.4.1
+Version: 1.5.0
 Description: Calculates the Boltzmann entropy of a landscape gradient.
     This package uses the analytical method created by Gao, P., Zhang, H.
     and Li, Z., 2018 (<doi:10.1111/tgis.12315>) and by Gao, P. and Li, Z., 2019
@@ -17,25 +17,26 @@ Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends:
     R (>= 3.3.0)
 LinkingTo:
     Rcpp,
     RcppArmadillo
 Imports:
-    raster,
     Rcpp
 Suggests:
     testthat,
     sf,
     sp,
-    stars,
+    raster,
     covr,
     knitr,
     rmarkdown,
     ggplot2,
-    rasterVis
+    rasterVis,
+    stars,
+    terra
 URL: https://r-spatialecology.github.io/belg/
 BugReports: https://github.com/r-spatialecology/belg/issues
 VignetteBuilder: knitr

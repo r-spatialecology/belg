@@ -9,6 +9,7 @@
 \alias{get_boltzmann.RasterStack}
 \alias{get_boltzmann.RasterBrick}
 \alias{get_boltzmann.stars}
+\alias{get_boltzmann.SpatRaster}
 \title{Boltzmann entropy of a landscape gradient}
 \usage{
 get_boltzmann(
@@ -68,6 +69,14 @@ get_boltzmann(
 )
 
 \method{get_boltzmann}{stars}(
+  x,
+  method = "aggregation",
+  na_adjust = TRUE,
+  base = "log10",
+  relative = FALSE
+)
+
+\method{get_boltzmann}{SpatRaster}(
   x,
   method = "aggregation",
   na_adjust = TRUE,

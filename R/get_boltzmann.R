@@ -2,7 +2,7 @@
 #'
 #' Calculates the Boltzmann entropy of a landscape gradient
 #'
-#' @param x stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.
+#' @param x SpatRaster, stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.
 #' @param base A logarithm base ("log", "log2" or "log10").
 #' @param relative Should a relative or absolute entopy be calculated? TRUE or FALSE (default).
 #' @param method A method used. Either "hierarchy" for
@@ -192,3 +192,12 @@ get_boltzmann.stars = function(x, method = "aggregation", na_adjust = TRUE, base
   # }
   get_boltzmann(x[[1]], base = base, relative = relative, method = method, na_adjust = na_adjust)
 }
+
+#' @name get_boltzmann
+#' @export
+get_boltzmann.SpatRaster = function(x, method = "aggregation", na_adjust = TRUE, base = "log10", relative = FALSE){
+  if (!requireNamespace("terra", quietly = TRUE))
+    stop("Package terra required, please install it first", call. = FALSE)
+  get_boltzmann(terra::as.array(x), base = base, relative = relative, method = method, na_adjust = na_adjust)
+}
+

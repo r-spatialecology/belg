@@ -48,6 +48,8 @@ As an example, we use two rasters - `land_gradient1` representing a complex land
 ```{r, message=FALSE, fig.height=3}
 library(raster)
 library(belg)
+data("land_gradient1", package = "belg")
+data("land_gradient2", package = "belg")
 plot(stack(land_gradient1, land_gradient2))
 ```
 

@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // get_boltzmann_default
 double get_boltzmann_default(arma::mat x, std::string base, bool relative);
 RcppExport SEXP _belg_get_boltzmann_default(SEXP xSEXP, SEXP baseSEXP, SEXP relativeSEXP) {

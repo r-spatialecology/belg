@@ -3,6 +3,7 @@
 S3method(get_boltzmann,RasterBrick)
 S3method(get_boltzmann,RasterLayer)
 S3method(get_boltzmann,RasterStack)
+S3method(get_boltzmann,SpatRaster)
 S3method(get_boltzmann,array)
 S3method(get_boltzmann,default)
 S3method(get_boltzmann,matrix)
