@@ -17,10 +17,10 @@ downloads](http://cranlogs.r-pkg.org/badges/belg)](https://cran.r-project.org/pa
 
 Boltzmann entropy (also called configurational entropy) has been
 recently adopted to analyze entropy of landscape gradients (Gao et
-al. (2017, 2018, 2019)). The goal of **belg** is to provide an
-efficient C++ implementation of this method in R. It also extend the
-original idea by allowing calculations on data with missing values
-(Nowosad and Gao (2020)).
+al. (2017, 2018, 2019)). The goal of **belg** is to provide an efficient
+C++ implementation of this method in R. It also extend the original idea
+by allowing calculations on data with missing values (Nowosad and Gao
+(2020)).
 
 ## Installation
 
@@ -46,6 +46,8 @@ complex landscape and `land_gradient2` representing a simple landscape:
 ``` r
 library(raster)
 library(belg)
+data("land_gradient1", package = "belg")
+data("land_gradient2", package = "belg")
 plot(stack(land_gradient1, land_gradient2))
 ```
 
@@ -94,15 +96,15 @@ More examples can be find at <https://github.com/Nowosad/belg-examples>.
 
 ## References
 
-  - Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution
+-   Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution
     to calculate the configurational entropy of landscape gradients.”
     Landscape Ecology 32(6) (2017): 1133-1146.
-  - Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical
+-   Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical
     method for computing the Boltzmann entropy of a landscape gradient.”
     Transactions in GIS (2018).
-  - Gao, Peichao and Zhilin Li. “Aggregation-based method for computing
+-   Gao, Peichao and Zhilin Li. “Aggregation-based method for computing
     absolute Boltzmann entropy of landscape gradient with full
     thermodynamic consistency.” Landscape Ecology (2019).
-  - Nowosad, J.; Gao, P. belg: A Tool for Calculating Boltzmann Entropy
+-   Nowosad, J.; Gao, P. belg: A Tool for Calculating Boltzmann Entropy
     of Landscape Gradients. Entropy 2020, 22, 937.
     <https://doi.org/10.3390/e22090937>
