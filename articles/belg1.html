@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/r-spatialecology/belg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>belg: Boltzmann Entropy of a Landscape Gradient</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2020-08-30</h4>
+            <h4 class="date">2021-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/r-spatialecology/belg/blob/master/vignettes/belg1.Rmd"><code>vignettes/belg1.Rmd</code></a></small>
       <div class="hidden name"><code>belg1.Rmd</code></div>
@@ -99,7 +99,9 @@
 <h1 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h1>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">raster</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">belg</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">belg</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"complex_land"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"belg"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"simple_land"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"belg"</span>)</pre></body></html></div>
 <p>Let’s take two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 <p>The main function in this package, <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code>, calculates the Boltzmann entropy of a landscape gradient:</p>
