@@ -85,7 +85,7 @@ get_boltzmann(
 )
 }
 \arguments{
-\item{x}{stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.}
+\item{x}{SpatRaster, stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.}
 
 \item{method}{A method used. Either "hierarchy" for
 the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
