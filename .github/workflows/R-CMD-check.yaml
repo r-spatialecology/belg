@@ -43,10 +43,10 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages("remotes")
-          install.packages("sf", configure.args = "--with-proj-lib=/usr/local/lib/")
+          # install.packages("sf", configure.args = "--with-proj-lib=/usr/local/lib/")
           remotes::install_deps(dependencies = TRUE)
-          # remotes::install_dev("pkgdown")
-          remotes::install_github("r-lib/pkgdown#1276")
+          remotes::install_dev("pkgdown")
+          # remotes::install_github("r-lib/pkgdown#1276")
         shell: Rscript {0}
 
       - name: Install package

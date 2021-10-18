@@ -27,7 +27,6 @@ Imports:
     Rcpp
 Suggests:
     testthat,
-    sf,
     sp,
     raster,
     rgdal,
