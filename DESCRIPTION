@@ -30,6 +30,7 @@ Suggests:
     sf,
     sp,
     raster,
+    rgdal,
     covr,
     knitr,
     rmarkdown,
