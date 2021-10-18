@@ -40,8 +40,8 @@ It also extend the original idea by allowing calculations on data with missing v
 ```{r, message=FALSE}
 library(raster)
 library(belg)
-data("complex_land", package = "belg")
-data("simple_land", package = "belg")
+complex_land = raster(system.file("raster/complex_land.tif", package = "belg"))
+simple_land = raster(system.file("raster/simple_land.tif", package = "belg"))
 ```
 
 Let's take two small rasters - `complex_land` representing a complex landscape and `simple_land` representing a simple landscape.

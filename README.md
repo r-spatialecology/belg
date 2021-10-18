@@ -46,8 +46,8 @@ complex landscape and `land_gradient2` representing a simple landscape:
 ``` r
 library(raster)
 library(belg)
-data("land_gradient1", package = "belg")
-data("land_gradient2", package = "belg")
+land_gradient1 = raster(system.file("raster/land_gradient1.tif", package = "belg"))
+land_gradient2 = raster(system.file("raster/land_gradient2.tif", package = "belg"))
 plot(stack(land_gradient1, land_gradient2))
 ```
 

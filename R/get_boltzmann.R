@@ -4,7 +4,7 @@
 #'
 #' @param x SpatRaster, stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.
 #' @param base A logarithm base ("log", "log2" or "log10").
-#' @param relative Should a relative or absolute entopy be calculated? TRUE or FALSE (default).
+#' @param relative Should a relative or absolute entropy be calculated? TRUE or FALSE (default).
 #' @param method A method used. Either "hierarchy" for
 #' the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
 #' for the aggregation-based method (Gao et al., 2019).

@@ -95,7 +95,7 @@ for the aggregation-based method (Gao et al., 2019).}
 
 \item{base}{A logarithm base ("log", "log2" or "log10").}
 
-\item{relative}{Should a relative or absolute entopy be calculated? TRUE or FALSE (default).}
+\item{relative}{Should a relative or absolute entropy be calculated? TRUE or FALSE (default).}
 }
 \value{
 a numeric vector

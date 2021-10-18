@@ -2,6 +2,9 @@ context("entropy calc on Raster*")
 
 library(raster)
 library(stars)
+complex_land = raster(system.file("raster/complex_land.tif", package = "belg"))
+simple_land = raster(system.file("raster/simple_land.tif", package = "belg"))
+
 stack_land = stack(simple_land, complex_land)
 brick_land = brick(simple_land, complex_land)
 
@@ -14,6 +17,9 @@ brick_output = get_boltzmann(brick_land, relative = FALSE, method = "hierarchy",
 stars_output1 = get_boltzmann(st_as_stars(simple_land), relative = FALSE, method = "hierarchy")
 stars_output2 = get_boltzmann(st_as_stars(stack_land), relative = FALSE, method = "hierarchy", base = "log2")
 stars_output3 = get_boltzmann(st_as_stars(brick_land), relative = FALSE, method = "hierarchy", base = "log2")
+
+# terra
+terra_output1 = get_boltzmann(terra::rast(simple_land), relative = FALSE, method = "hierarchy")
 
 test_that("entropy calc on a RasterLayer is correct", {
 
@@ -55,5 +61,12 @@ test_that("entropy calc on stars objects are correct", {
                                  st_as_stars(simple_land)),
                                  relative = FALSE,
                                method = "hierarchy"))
+
+})
+
+test_that("entropy calc on terra objects are correct", {
+
+  # calculations are correct
+  expect_equal(simple_output, terra_output1)
 
 })
