@@ -63,12 +63,12 @@ get_boltzmann(land_gradient2)
 #> [1] 121875.2
 ```
 
-This function accepts a `RasterLayer`, `RasterStack`, `RasterBrick`,
-`matrix`, or `array` object as an input. It allows for calculation of
-the relative (the `relative` argument equal to `TRUE`) and absolute
-Boltzmann entropy of a landscape gradient. As a default, it uses a
-logarithm of base 10 (`log10`), however `log` and `log2` are also
-available options for the `base` argument.
+This function accepts a `SpatRaster`, `stars`, `RasterLayer`,
+`RasterStack`, `RasterBrick`, `matrix`, or `array` object as an input.
+It allows for calculation of the relative (the `relative` argument equal
+to `TRUE`) and absolute Boltzmann entropy of a landscape gradient. As a
+default, it uses a logarithm of base 10 (`log10`), however `log` and
+`log2` are also available options for the `base` argument.
 
 ``` r
 get_boltzmann(land_gradient1, base = "log")
