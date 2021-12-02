@@ -36,7 +36,7 @@ Quick summary:
 I derived 619 different rasters (64 by 64 pixels) and calculated Boltzmann entropy using all four variants.
 You can find the correlation matrix of the results below:
 
-```{r}
+```{r, fig.width=6}
 knitr::include_graphics("summary.png")
 ```
 
