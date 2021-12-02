@@ -1,7 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.9000.9000.9000
-pkgdown_sha: cd888beda61ac8855bf823bd0664dd997a32a5f8
+pkgdown: 2.0.0.9000
+pkgdown_sha: 3e17275dfe27b1176d9cb596f679c23808d7b3d7
 articles:
   belg1: belg1.html
-last_built: 2021-10-18T16:53Z
+  belg2: belg2.html
+last_built: 2021-12-02T16:49Z
 

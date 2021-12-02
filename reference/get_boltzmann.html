@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">belg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
       </span>
     </div>
 
@@ -34,12 +34,15 @@
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/belg1.html">belg: Boltzmann Entropy of a Landscape Gradient</a>
     </li>
+    <li>
+      <a href="../articles/belg2.html">belg: hierarchy-based and aggregation-based methods</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/r-spatialecology/belg/">
+  <a href="https://github.com/r-spatialecology/belg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -54,7 +57,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Boltzmann entropy of a landscape gradient</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-spatialecology/belg/blob/master/R/get_boltzmann.R"><code>R/get_boltzmann.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-spatialecology/belg/blob/HEAD/R/get_boltzmann.R" class="external-link"><code>R/get_boltzmann.R</code></a></small>
     <div class="hidden name"><code>get_boltzmann.Rd</code></div>
     </div>
 
@@ -62,7 +65,8 @@
     <p>Calculates the Boltzmann entropy of a landscape gradient</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">get_boltzmann</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_boltzmann</span><span class="op">(</span>
   <span class="va">x</span>,
   method <span class="op">=</span> <span class="st">"aggregation"</span>,
   na_adjust <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -141,23 +145,23 @@
   base <span class="op">=</span> <span class="st">"log10"</span>,
   relative <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>SpatRaster, stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.</p></td>
-    </tr><tr><th>method</th>
-      <td><p>A method used. Either "hierarchy" for
+    <dl><dt>x</dt>
+<dd><p>SpatRaster, stars, RasterLayer, RasterStack, RasterBrick, matrix, or array.</p></dd>
+<dt>method</dt>
+<dd><p>A method used. Either "hierarchy" for
 the hierarchy-based method (Gao et al., 2017) or "aggregation" (default)
-for the aggregation-based method (Gao et al., 2019).</p></td>
-    </tr><tr><th>na_adjust</th>
-      <td><p>Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE</p></td>
-    </tr><tr><th>base</th>
-      <td><p>A logarithm base ("log", "log2" or "log10").</p></td>
-    </tr><tr><th>relative</th>
-      <td><p>Should a relative or absolute entropy be calculated? TRUE or FALSE (default).</p></td>
-    </tr></table></div>
-
+for the aggregation-based method (Gao et al., 2019).</p></dd>
+<dt>na_adjust</dt>
+<dd><p>Should the output value be adjusted to the proportion of not missing cells? Either TRUE (default) or FALSE</p></dd>
+<dt>base</dt>
+<dd><p>A logarithm base ("log", "log2" or "log10").</p></dd>
+<dt>relative</dt>
+<dd><p>Should a relative or absolute entropy be calculated? TRUE or FALSE (default).</p></dd>
+</dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>a numeric vector</p>
@@ -184,14 +188,14 @@ with full thermodynamic consistency"
 Landscape Ecology (2019)</p>
     </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">new_c</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">56</span>, <span class="fl">86</span>, <span class="fl">98</span>, <span class="fl">50</span>, <span class="fl">45</span>, <span class="fl">56</span>, <span class="fl">96</span>, <span class="fl">25</span>,</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">new_c</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">56</span>, <span class="fl">86</span>, <span class="fl">98</span>, <span class="fl">50</span>, <span class="fl">45</span>, <span class="fl">56</span>, <span class="fl">96</span>, <span class="fl">25</span>,</span>
 <span class="r-in">          <span class="fl">15</span>, <span class="fl">55</span>, <span class="fl">85</span>, <span class="fl">69</span>, <span class="fl">12</span>, <span class="fl">52</span>, <span class="fl">25</span>, <span class="fl">56</span>,</span>
 <span class="r-in">          <span class="fl">32</span>, <span class="fl">25</span>, <span class="fl">68</span>, <span class="fl">98</span>, <span class="fl">58</span>, <span class="fl">66</span>, <span class="fl">56</span>, <span class="fl">58</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">lg</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">new_c</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">8</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">lg</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="va">new_c</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">8</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">get_boltzmann</span><span class="op">(</span><span class="va">lg</span>, relative <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, base <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 48.43241</span>
 <span class="r-in"><span class="fu">get_boltzmann</span><span class="op">(</span><span class="va">lg</span>, relative <span class="op">=</span> <span class="cn">TRUE</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, base <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span>
@@ -213,7 +217,7 @@ Landscape Ecology (2019)</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.9000.</p>
 </div>
 
       </footer></div>
