@@ -13,7 +13,7 @@ double get_boltzmann_aggregation(arma::mat x, std::string base, bool relative){
   double res = 0;
 
   // check for 2
-  if((is_power_of_two(x.n_rows) == 0) | (is_power_of_two(x.n_cols) == 0)){
+  if((is_power_of_two(x.n_rows) == 0) || (is_power_of_two(x.n_cols) == 0)){
     throw Rcpp::exception("Number of rows and columns must be a multiple of 2.", false);
   }
 
