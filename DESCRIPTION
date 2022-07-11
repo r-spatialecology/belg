@@ -16,7 +16,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 ByteCompile: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Depends:
     R (>= 3.3.0)
 LinkingTo:
