@@ -78,13 +78,15 @@
 
       
 
-      </header><script src="belg1_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>belg: Boltzmann Entropy of a Landscape Gradient</h1>
-                        <h4 data-toc-skip class="author">Jakub Nowosad</h4>
+      <h1 data-toc-skip>belg: Boltzmann Entropy of a Landscape
+Gradient</h1>
+                        <h4 data-toc-skip class="author">Jakub
+Nowosad</h4>
             
-            <h4 data-toc-skip class="date">2022-10-05</h4>
+            <h4 data-toc-skip class="date">2022-12-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/r-spatialecology/belg/blob/HEAD/vignettes/belg1.Rmd" class="external-link"><code>vignettes/belg1.Rmd</code></a></small>
       <div class="hidden name"><code>belg1.Rmd</code></div>
@@ -93,7 +95,12 @@
 
     
     
-<p>Boltzmann entropy (also called configurational entropy) has been recently adopted to analyze entropy of landscape gradients (Gao et al. (2017), Gao et al. (2018)). The goal of <strong>belg</strong> is to provide an efficient C++ implementation of this method in R. It also extend the original idea by allowing calculations on data with missing values.</p>
+<p>Boltzmann entropy (also called configurational entropy) has been
+recently adopted to analyze entropy of landscape gradients (Gao et
+al. (2017), Gao et al. (2018)). The goal of <strong>belg</strong> is to
+provide an efficient C++ implementation of this method in R. It also
+extend the original idea by allowing calculations on data with missing
+values.</p>
 <div class="section level2">
 <h2 id="basic-example">Basic example<a class="anchor" aria-label="anchor" href="#basic-example"></a>
 </h2>
@@ -102,48 +109,71 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatialecology.github.io/belg/" class="external-link">belg</a></span><span class="op">)</span></span>
 <span><span class="va">complex_land</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"raster/complex_land.tif"</span>, package <span class="op">=</span> <span class="st">"belg"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">simple_land</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"raster/simple_land.tif"</span>, package <span class="op">=</span> <span class="st">"belg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Let’s take two small rasters - <code>complex_land</code> representing a complex landscape and <code>simple_land</code> representing a simple landscape.</p>
+<p>Let’s take two small rasters - <code>complex_land</code> representing
+a complex landscape and <code>simple_land</code> representing a simple
+landscape.</p>
+<pre><code><span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span></code></pre>
 <p><img src="belg1_files/figure-html/unnamed-chunk-2-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
-<p>The main function in this package, <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code>, calculates the Boltzmann entropy of a landscape gradient:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>The main function in this package, <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code>,
+calculates the Boltzmann entropy of a landscape gradient:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 191.1567</span></span>
 <span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">simple_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 104.8581</span></span></code></pre></div>
-<p>The results, unsurprisingly, showed that the complex landscape has a larger value of the Boltzmann entropy than the simple one.</p>
-<p>The <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> function accepts a <code>RasterLayer</code>, <code>RasterStack</code>, <code>RasterBrick</code>, <code>matrix</code>, or <code>array</code> object as an input. As a default, it uses a logarithm of base 10 (<code>log10</code>), however <code>log</code> and <code>log2</code> are also available options for the <code>base</code> argument.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>The results, unsurprisingly, showed that the complex landscape has a
+larger value of the Boltzmann entropy than the simple one.</p>
+<p>The <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> function accepts a
+<code>RasterLayer</code>, <code>RasterStack</code>,
+<code>RasterBrick</code>, <code>matrix</code>, or <code>array</code>
+object as an input. As a default, it uses a logarithm of base 10
+(<code>log10</code>), however <code>log</code> and <code>log2</code> are
+also available options for the <code>base</code> argument.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span> <span class="co"># log10</span></span>
 <span><span class="co">#&gt; [1] 191.1567</span></span>
 <span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, base <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 440.1546</span></span>
 <span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, base <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 635.0089</span></span></code></pre></div>
-<p>It also allows for calculation of the relative (the <code>relative</code> argument equal to <code>TRUE</code>) and absolute Boltzmann entropy of a landscape gradient.</p>
+<p>It also allows for calculation of the relative (the
+<code>relative</code> argument equal to <code>TRUE</code>) and absolute
+Boltzmann entropy of a landscape gradient.</p>
 </div>
 <div class="section level2">
 <h2 id="relative-boltzmann-entropy-of-a-landscape-gradient">Relative Boltzmann entropy of a landscape gradient<a class="anchor" aria-label="anchor" href="#relative-boltzmann-entropy-of-a-landscape-gradient"></a>
 </h2>
-<p>The main idea behind the Boltzmann entropy of a landscape gradient is to calculate an entropy in a sliding window of 2 x 2 pixels. The relative configurational entropy is a sum of entropies for all windows of the original data.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>The main idea behind the Boltzmann entropy of a landscape gradient is
+to calculate an entropy in a sliding window of 2 x 2 pixels. The
+relative configurational entropy is a sum of entropies for all windows
+of the original data.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, relative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 88.55451</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="absolute-boltzmann-entropy-of-a-landscape-gradient">Absolute Boltzmann entropy of a landscape gradient<a class="anchor" aria-label="anchor" href="#absolute-boltzmann-entropy-of-a-landscape-gradient"></a>
 </h2>
-<p>It is possible to calculate an average value for each sliding window of 2 x 2 pixels and therefore create a resampled version of the original dataset:</p>
+<p>It is possible to calculate an average value for each sliding window
+of 2 x 2 pixels and therefore create a resampled version of the original
+dataset:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-6-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
-<p>The absolute configurational entropy is a sum of relative configurational entropies for all levels, starting from the original data to the resampled dataset with at least two rows or columns.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>The absolute configurational entropy is a sum of relative
+configurational entropies for all levels, starting from the original
+data to the resampled dataset with at least two rows or columns.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">complex_land</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span>, relative <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 191.1567</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="calculation-of-the-configurational-entropy-in-a-sliding-window">Calculation of the configurational entropy in a sliding window<a class="anchor" aria-label="anchor" href="#calculation-of-the-configurational-entropy-in-a-sliding-window"></a>
 </h2>
-<p>Determining the number of microstates belonging to a defined macrostate in a crucial concept for calculation of the configurational entropy. We explore this topic using five different cases of 2 x 2 windows:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>Determining the number of microstates belonging to a defined
+macrostate in a crucial concept for calculation of the configurational
+entropy. We explore this topic using five different cases of 2 x 2
+windows:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">win_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">win_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">win_3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -152,51 +182,69 @@
 <div class="section level3">
 <h3 id="data-without-missing-values">Data without missing values<a class="anchor" aria-label="anchor" href="#data-without-missing-values"></a>
 </h3>
-<p>The configurational entropy for data without missing values is calculated using the analytical method by Gao et al. (2018).</p>
+<p>The configurational entropy for data without missing values is
+calculated using the analytical method by Gao et al. (2018).</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<p>Twenty-four different microstate are possible in the above case. The common (base 10) logarithm of 24 is equal to 1.380211. We can compare this result to the <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> output:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Twenty-four different microstate are possible in the above case. The
+common (base 10) logarithm of 24 is equal to 1.380211. We can compare
+this result to the <code><a href="../reference/get_boltzmann.html">get_boltzmann()</a></code> output:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">win_1</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.380211</span></span></code></pre></div>
-<p>The generalized (resampled) version of this window has one value, <code>3</code>, which is a rounded average of the four original values.</p>
+<p>The generalized (resampled) version of this window has one value,
+<code>3</code>, which is a rounded average of the four original
+values.</p>
 </div>
 <div class="section level3">
 <h3 id="data-with-missing-values">Data with missing values<a class="anchor" aria-label="anchor" href="#data-with-missing-values"></a>
 </h3>
-<p>The papers of Gao et al. (2017, 2018) only considered data without missing values. However, the <strong>belg</strong> package provides a modification allowing for calculation also for data with missing values. Cells with <code>NA</code> are not considered when calculating microstates.</p>
+<p>The papers of Gao et al. (2017, 2018) only considered data without
+missing values. However, the <strong>belg</strong> package provides a
+modification allowing for calculation also for data with missing values.
+Cells with <code>NA</code> are not considered when calculating
+microstates.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>For example, three microstates are possible for the above case:</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-12-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-12-2.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-12-3.png" width="700"></p>
 <p>The common (base 10) logarithm of 3 is equal to 0.477121.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">win_2</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.6361617</span></span></code></pre></div>
 <p>The generalized (resampled) version of this window is 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-14-1.png" width="700"><img src="belg1_files/figure-html/unnamed-chunk-14-2.png" width="700"></p>
-<p>The third window has two combinations. The common logarithm of 2 is equal to 0.30103.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>The third window has two combinations. The common logarithm of 2 is
+equal to 0.30103.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">win_3</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.60206</span></span></code></pre></div>
 <p>The generalized (resampled) version of this window is also 2.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<p>The fourth window has only one microstate, therefore its common logarithm equals to 0.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>The fourth window has only one microstate, therefore its common
+logarithm equals to 0.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">win_4</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<p>The generalized (resampled) version of this window is the same as only existing value - 1.</p>
+<p>The generalized (resampled) version of this window is the same as
+only existing value - 1.</p>
 <p><img src="belg1_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
-<p>Finally, the last window consists of four missing values. In these cases, the configurational entropy is zero.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>Finally, the last window consists of four missing values. In these
+cases, the configurational entropy is zero.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_boltzmann.html">get_boltzmann</a></span><span class="op">(</span><span class="va">win_5</span>, method <span class="op">=</span> <span class="st">"hierarchy"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
-<p>Importantly, the generalized version of this window is represented by NA.</p>
+<p>Importantly, the generalized version of this window is represented by
+NA.</p>
 </div>
 <div class="section level3">
 <h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
 <ul>
-<li>Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical method for computing the Boltzmann entropy of a landscape gradient.” Transactions in GIS (2018).</li>
-<li>Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution to calculate the configurational entropy of landscape gradients.” Landscape Ecology 32(6) (2017): 1133-1146.</li>
+<li>Gao, Peichao, Hong Zhang, and Zhilin Li. “An efficient analytical
+method for computing the Boltzmann entropy of a landscape gradient.”
+Transactions in GIS (2018).</li>
+<li>Gao, Peichao, Hong Zhang, and Zhilin Li. “A hierarchy-based solution
+to calculate the configurational entropy of landscape gradients.”
+Landscape Ecology 32(6) (2017): 1133-1146.</li>
 </ul>
 </div>
 </div>
@@ -219,7 +267,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>
